@@ -7,7 +7,7 @@
 //We get all words from a dictionary
 //Dictionary is a JSON file
 var jsonFile = new XMLHttpRequest();
-var url = "https://mcflydesigner.github.io/tasks/";
+var url = "https://annprot.github.io/tasks/";
 
 //Initialize all words from JSON file
 jsonFile.onreadystatechange = function() {

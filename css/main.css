@@ -240,6 +240,7 @@ header h1, #end h1 {
 	margin: 0 auto;
 	text-align: center;
 	word-wrap: normal;
+	color: #fff;
 }
 
 #game button.color {
@@ -268,7 +269,6 @@ header h1, #end h1 {
 	margin-bottom: 0px;
 	display: inline-block;
 	max-width: 350px;
-	overflow: hidden;
 }
 
 #game #pfs {
@@ -282,7 +282,8 @@ header h1, #end h1 {
 #game #counter {
 	margin: 0;
 	padding: 0;
-	color: #7C7C7C;
+	color: #fff;
+	font-weight: bold;
 	font-size: 24px;
 }
 
@@ -299,9 +300,9 @@ header h1, #end h1 {
 	width: 90%;
 	padding: 10px 15px;
 	background: none;
-	border: 1px solid black;
+	border: 1px solid #fff;
 	font-size: 20px;
-	color: black;
+	color: #fff;
 	transition: 0.5s background;
 }
 
@@ -313,19 +314,20 @@ header h1, #end h1 {
 
 #game button, #game button:active {
 	margin: 30px auto;
-	background: black;
-	color: #fff;
+	background: #fff;
+	color: #FDC830;
 	font-size: 20px;
 	font-weight: 100;
-	width: 100px;
+	width: 200px;
 	padding: 10px;
-	border: 1px solid black;
+	height: 60px;
+	border: 1px solid #fff;
 	display: inline-block;
 }
 
 #game button:hover {
 	background: none;
-	color: black;
+	color: #fff;
 	transition: 1s background;
 	cursor: pointer;
 }
@@ -360,6 +362,10 @@ header h1, #end h1 {
 	top: 0;
 	left: 0;
 	overflow: auto;
+
+	background: #FDC830;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 
@@ -428,6 +434,10 @@ header h1, #end h1 {
 	font-weight: 100;
 }
 
+#end p#number {
+	font-size: 120px;
+}
+
 #end #end_text {
 	color: #fff;
 	max-width: 500px;
@@ -450,7 +460,7 @@ header h1, #end h1 {
 }
 
 #end a:hover {
-	color: black;
+	color: #fff;
 	transition: 0.8s color;
 }
 
