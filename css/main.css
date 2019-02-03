@@ -1,0 +1,523 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #FDC830;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+#wrap{
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 16px;
+	background: #333333;
+	z-index: 100;
+	overflow: auto;
+}
+
+#window{
+	border-radius: 5px;
+	max-width: 700px;
+	height: 500px;
+	margin: 50px auto;
+	display: none;
+	background: #fff;
+	color: black;
+	z-index: 200;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 16px;
+}
+
+.close{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: -10px;
+	right: -10px;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+#faq button {
+	cursor: pointer;
+	text-align: center;
+	width: 45px;
+	height: 45px;
+	background: black;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+#faq button img {
+	width: 20px;
+	height: 20px;
+}
+
+#faq #window {
+	text-align: center;
+	overflow-x:hidden;
+}
+
+#faq #window h1 {
+	margin: 0;
+	padding: 0;
+	margin-top: 10px;
+	font-size: 60px;
+	color: black;
+}
+
+#faq #window .line_up {
+	border-top: 1px dashed black;
+}
+
+#faq #window .line_down {
+	border-bottom: 1px dashed black;
+}
+
+#faq #window p.ask {
+	padding-top: 10px;
+	margin: 10px;
+	font-size: 26px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#faq #window p.nask {
+	text-align: left;
+}
+
+#faq #window .f_answer {
+	padding-bottom: 10px;
+}
+
+#faq #window p.example {
+	font-weight: bold;
+}
+
+#faq #window h2 {
+	font-weight: 100;
+}
+
+#faq .gif {
+	width: 500px;
+}
+
+#faq #window p.answer {
+	margin: 0px 10px;
+	font-size: 18px;
+	text-align: left;
+	font-weight: 100;
+}
+
+#faq #window button.close {
+	margin-top: 20px;
+	border-radius: 0px;
+	width: 150px;
+	color: #fff;
+	height: auto;
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 40px;
+	font-size: 24px;
+	padding: 15px;
+	border: 1px solid black;
+}
+
+#faq #window button.close:hover {
+	background: none;
+	color: black;
+	transition: 0.8s background;
+}
+
+
+header {
+	display: none;
+	color: #fff;
+}
+
+header h1, #end h1 {
+	padding-top: 200px;
+	text-align: center;
+	color: #fff;
+	display: block;
+	margin: 20px auto;
+	font-size: 80px;
+}
+
+
+#main {
+	display: none;
+	color: #fff;
+}
+
+#main h2 {
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	display: block;
+	margin: 10px;
+	padding: 0px;
+	font-weight: 100;
+}
+
+#main button {
+	display: block;
+	margin: 80px auto;
+	background: #fff;
+	color: #FDC830;
+	font-size: 24px;
+	font-weight: 100;
+	width: 300px;
+	height: 70px;
+	padding: 10px 10px;
+	border: 1px solid #F47735;
+}
+
+#main button:hover {
+	background: black;
+	color: #fff;
+	transition: 1s background;
+	cursor: pointer;
+}
+
+#main button:active, :hover, :focus {
+	outline: 0;
+	outline-offset: 0;
+}
+
+#exercs {
+	display: none;
+	text-align: center;
+	color: #fff;
+}
+
+#exercs p {
+	font-size: 24px;
+}
+
+#exercs .list button {
+	cursor: pointer;
+	color: #fff;
+	background: none;
+	padding: 15px 15px;
+	display: inline-block;
+	margin: 10px;
+	border: 1px solid #fff;
+	width: 70px;
+	height: 70px;
+	font-size: 24px;
+}
+
+#exercs .list button:hover {
+	background: white;
+	color: #FDC830;
+	transition: background 0.8s;
+}
+
+
+
+
+
+#game {
+	display: none;
+	margin: 0 auto;
+	text-align: center;
+	word-wrap: normal;
+}
+
+#game button.color {
+	display: inline-block;
+	cursor: pointer;
+	background: none;
+	font-size: 18px;
+	border: none;
+	color: black;
+	margin: 0px;
+	width: 50px;
+	padding: 0px;
+}
+
+#game #task {
+	font-size: 28px;
+	font-weight: 100;
+	margin-bottom: 5px;
+}
+
+#game #word {
+	font-size: 50px;
+	font-weight: bold;
+	margin-top: 0;
+	padding: 0;
+	margin-bottom: 0px;
+	display: inline-block;
+	max-width: 350px;
+	overflow: hidden;
+}
+
+#game #pfs {
+	margin: 0px auto;
+	padding: 0;
+	color: #7C7C7C;
+	font-size: 24px;
+	vertical-align: middle;
+}
+
+#game #counter {
+	margin: 0;
+	padding: 0;
+	color: #7C7C7C;
+	font-size: 24px;
+}
+
+#game {
+	width: 100%;
+}
+
+#game input, button {
+	display: block;
+	margin: 10px auto;
+}
+
+#game input {
+	width: 90%;
+	padding: 10px 15px;
+	background: none;
+	border: 1px solid black;
+	font-size: 20px;
+	color: black;
+	transition: 0.5s background;
+}
+
+#game input:active, :hover, :focus {
+	outline: 0;
+	outline-offset: 0;
+}
+
+
+#game button, #game button:active {
+	margin: 30px auto;
+	background: black;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 100;
+	width: 100px;
+	padding: 10px;
+	border: 1px solid black;
+	display: inline-block;
+}
+
+#game button:hover {
+	background: none;
+	color: black;
+	transition: 1s background;
+	cursor: pointer;
+}
+
+#game img {
+	margin: 2px;
+	margin-top: 50px;
+	width: 50px;
+}
+
+#game button.know, #game button.know:active {
+	background: none;
+	color: black;
+	margin: 0px 10px;
+	border: 1px solid black;
+}
+
+#game button.know:hover {
+	background: black;
+	color: #fff;
+	transition: 1s background;
+}
+
+#game .icons a:hover {
+	background: 0.5s #333;
+}
+
+.parent {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: auto;
+}
+
+
+.block {
+	width: 350px;
+	height: 350px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -175px 0 0 -175px;
+}
+
+
+
+
+#select_game {
+	display: none;
+	text-align: center;
+}
+
+#select_game p {
+	font-size: 28px;
+	margin: 10px;
+	padding: 0;
+}
+
+#select_game button {
+	display: inline-block;
+	font-size: 24px;
+	border: 1px solid black;
+	background: none;
+	padding: 20px;
+	color: black;
+	margin: 20px;
+	cursor: pointer;
+}
+
+#select_game button:hover {
+	background: black;
+	color: #fff;
+	transition: 0.7s background;
+}
+
+#end {
+	display: none;
+	text-align: center;
+	padding-bottom: 40px; 
+}
+
+#end h1 {
+	padding-top: 30px;
+	color: #fff;
+}
+
+#end img {
+	display: none;
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+}
+
+#end p {
+	color: #fff;
+	font-size: 36px;
+	margin: 10px;
+	font-weight: 100;
+}
+
+#end #end_text {
+	color: #fff;
+	max-width: 500px;
+	margin: 10px auto;
+	font-weight: 100;
+}
+
+#end a {
+	font-weight: 100;
+	display: block;
+	margin: 0px auto;
+	margin-top: 40px;
+	font-size: 24px;
+	width: 200px;
+	background: white;
+	border: 1px solid #fff;
+	padding: 15px;
+	color: #8E2DE2;
+	text-decoration: none;
+}
+
+#end a:hover {
+	color: black;
+	transition: 0.8s color;
+}
+
+
+@media screen and (max-width: 800px) {
+	header h1, #end h1 {
+		padding-top: 100px;
+	}
+
+
+}
+
+@media screen and (max-width: 600px) {
+	#faq .gif {
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	header h1{
+		font-size: 60px;
+		font-weight: 100;
+	}
+
+	.block {
+		width: 300px;
+		height: 300px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -150px 0 0 -150px;
+	}
+
+	#game #word {
+		font-size: 50px;
+		font-weight: 100;
+	}
+
+	#game #pfs {
+		font-size: 18px;
+		font-weight: 100;
+	}
+	
+	#game button {
+		margin-bottom: 15px;
+	}
+
+	#game img {
+		margin-top: 15px;
+	}
+
+	#end p#end_text {
+		font-size: 28px;
+		max-width: 250px;
+	}
+
+	#end img {
+		width: 200px;
+		height: 200px;
+	}
+
+	#faq .gif {
+		width: 300px;
+	}
+
+	#faq img {
+		width: 300px;
+	}
+
+}
