@@ -25,10 +25,10 @@ body {
 }
 
 #window, #er_window{
-	border-radius: 5px;
+	text-align: center;
 	max-width: 700px;
-	height: 500px;
-	margin: 50px auto;
+	height: 200px;
+	margin: auto auto;
 	display: none;
 	background: #fff;
 	color: black;
@@ -39,16 +39,30 @@ body {
 	top: 0;
 	bottom: 0;
 	padding: 16px;
+	font-size: 24px;
 }
 
-.close{
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	top: -10px;
-	right: -10px;
+#er_window p#us_errors {
+	text-align: left;
+	font-size: 18px;
+}
+
+#er_window button.p_close {
+	padding: 10px 15px;
+	background: black;
+	border: 1px solid black;
+	color: #fff;
+	font-size: 18px;
+	width: 100px;
 	cursor: pointer;
-	z-index: 1000;
+	margin-top: 50px;
+}
+
+#er_window button.p_close:hover {
+	background: none;
+	border: 1px solid black;
+	color: black;
+	transition: background 0.8s;
 }
 
 #faq button {
@@ -443,20 +457,20 @@ header h1, #end h1 {
 
 #end button#btn_errors {
 	margin: 40px auto;
-    font-size: 18px;
-    background: #D63C3C;
-    border: 1px solid #D63C3C;
-    padding: 10px 15px;
-    color: #fff;
-    cursor: pointer;
+	font-size: 18px;
+	background: #D63C3C;
+	border: 1px solid #D63C3C;
+	padding: 10px 15px;
+	color: #fff;
+	cursor: pointer;
 }
 
 #end button#btn_errors:hover {
 	color: #D63C3C;
 	background: #fff;
 	border: 1px solid #fff;
-	background: none;
-	transition: 0.8s background;
+	transition: 1 background;
+	transition: 0.8s border;
 }
 
 #us_pop_er {

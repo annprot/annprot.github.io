@@ -97,13 +97,6 @@ function game_handle() {
 	} 
 }
 
-
-
-
-function view_errors() {
-
-}
-
 //Change the word
 function set_word() {
 	//Start game
@@ -120,7 +113,7 @@ function set_word() {
 
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
-			document.getElementById("us_errors").innerHTML += rerrors.join(',');
+			document.getElementById("us_errors").innerHTML += rerrors.join(', ');
 			//bug
 		}
 		else document.getElementById("btn_errors").style.display = "none";

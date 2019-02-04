@@ -44,6 +44,7 @@
 			<button onclick="btn_handler(9);">9</button>
 			<button onclick="btn_handler(10);">10</button>
 			<button onclick="btn_handler(11);">11</button>
+			<button onclick="btn_handler(12);">12</button>
 		</div>
 	</section>
 	<!-- End Dictionaries section -->
@@ -78,8 +79,9 @@
 	<section id="us_pop_er">
 		<div id="er_wrap" onclick="er_show('none')">
 			<div id="er_window">
-				<p>Слова, в которых ты допустил ошибку:</p>
+				<p>Слово(а), в котором(ых) ты допустил ошибку:</p>
 				<p id="us_errors"></p>
+				<button class="p_close" onclick="er_show('none')">Close</button>
 			</div>
 		</div>
 	</section>
@@ -115,6 +117,10 @@
 				case 8:
 					us_task = 8;
 					//alert(us_task);
+				break;
+
+				case 12:
+					us_task = 12;
 				break;	
 			}
 
