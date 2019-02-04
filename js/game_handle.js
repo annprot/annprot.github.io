@@ -72,7 +72,7 @@ function game_handle() {
 
 		setTimeout(function () {
 			set_word();
-		}, 1500);
+		}, 1000);
 	}
 
 	if(!flag) {
@@ -83,11 +83,25 @@ function game_handle() {
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
 
+		var flag = false;
+		for(var i = 0; i < rerrors.length; i++) {
+			if(rerrors[i] == rwords[0]) flag = true; 
+		}
+
+		if(!flag) rerrors.push(rwords[0]);
+
 
 		setTimeout(function () {
 			set_word();
-		}, 2000);
+		}, 1500);
 	} 
+}
+
+
+
+
+function view_errors() {
+
 }
 
 //Change the word
@@ -103,6 +117,13 @@ function set_word() {
 		document.body.style.background = "#8E2DE2"; 
 		document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
 		document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
+
+		document.getElementById("us_pop_er").style.display = "block";
+		if(rerrors.length > 0) {
+			document.getElementById("us_errors").innerHTML += rerrors.join(',');
+			//bug
+		}
+		else document.getElementById("btn_errors").style.display = "none";
 
 		gameWork = false;
 		$("#end").fadeIn(1000);
@@ -147,3 +168,20 @@ function set_word() {
 	document.getElementById("counter").innerHTML = (position + 1) + "/" + all_elem;
 }
 
+
+
+//Errors popup
+//FAQ block 
+function er_show(state) {
+	switch(state) {
+		case "block":
+			$("#er_window").fadeIn(1000);
+			$("#er_wrap").fadeIn(1000);
+		break;
+
+		case "none":
+			$("#er_window").fadeOut(1000);
+			$("#er_wrap").fadeOut(1000);
+		break;
+	}
+}

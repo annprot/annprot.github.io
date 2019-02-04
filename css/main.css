@@ -5,13 +5,13 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #FDC830;  /* fallback for old browsers */
+	background: #FDC830;  /* fallback for old fbrowsers */
 	background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 
-#wrap{
+#wrap, #er_wrap{
 	display: none;
 	position: fixed;
 	left: 0;
@@ -24,7 +24,7 @@ body {
 	overflow: auto;
 }
 
-#window{
+#window, #er_window{
 	border-radius: 5px;
 	max-width: 700px;
 	height: 500px;
@@ -381,34 +381,6 @@ header h1, #end h1 {
 
 
 
-#select_game {
-	display: none;
-	text-align: center;
-}
-
-#select_game p {
-	font-size: 28px;
-	margin: 10px;
-	padding: 0;
-}
-
-#select_game button {
-	display: inline-block;
-	font-size: 24px;
-	border: 1px solid black;
-	background: none;
-	padding: 20px;
-	color: black;
-	margin: 20px;
-	cursor: pointer;
-}
-
-#select_game button:hover {
-	background: black;
-	color: #fff;
-	transition: 0.7s background;
-}
-
 #end {
 	display: none;
 	text-align: center;
@@ -461,7 +433,34 @@ header h1, #end h1 {
 
 #end a:hover {
 	color: #fff;
-	transition: 0.8s color;
+	background: none;
+	transition: 0.8s background;
+}
+
+#end p#us_errors {
+	font-size: 	24px;
+}
+
+#end button#btn_errors {
+	margin: 40px auto;
+    font-size: 18px;
+    background: #D63C3C;
+    border: 1px solid #D63C3C;
+    padding: 10px 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#end button#btn_errors:hover {
+	color: #D63C3C;
+	background: #fff;
+	border: 1px solid #fff;
+	background: none;
+	transition: 0.8s background;
+}
+
+#us_pop_er {
+	display: none;
 }
 
 
