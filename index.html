@@ -40,11 +40,11 @@
 	<section id="exercs">
 		<p>Выберите задание:</p>
 		<div class="list">
-			<button onclick="btn_handler(8);">8</button>
-			<button onclick="btn_handler(9);">9</button>
-			<button onclick="btn_handler(10);">10</button>
-			<button onclick="btn_handler(11);">11</button>
-			<button onclick="btn_handler(12);">12</button>
+			<button onclick="select_task(8);">8</button>
+			<button onclick="select_task(9);">9</button>
+			<button onclick="select_task(10);">10</button>
+			<button onclick="select_task(11);">11</button>
+			<button onclick="select_task(12);">12</button>
 		</div>
 	</section>
 	<!-- End Dictionaries section -->
@@ -109,22 +109,6 @@
 		function view_tasks() {
 			$("#main").fadeOut(500);
 			$("#exercs").fadeIn(2000);
-		}
-
-		//Handler for either games
-		function btn_handler(task) {
-			switch(task) {
-				case 8:
-					us_task = 8;
-					//alert(us_task);
-				break;
-
-				case 12:
-					us_task = 12;
-				break;	
-			}
-
-			select_task(us_task);
 		}
 
 		//Animation appear the starts elements
