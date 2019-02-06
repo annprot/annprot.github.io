@@ -17,8 +17,9 @@ jsonFile.onreadystatechange = function() {
   }
 
 //View all dictionaries for user
-function select_task(us_task) {
-	window.url += us_task + ".json";
+function select_task(user_task) {
+	us_task = user_task;
+	window.url += user_task + ".json";
 
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
