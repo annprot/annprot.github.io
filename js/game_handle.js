@@ -114,7 +114,6 @@ function set_word() {
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
 			document.getElementById("us_errors").innerHTML += rerrors.join(', ');
-			//bug
 		}
 		else document.getElementById("btn_errors").style.display = "none";
 
@@ -131,7 +130,8 @@ function set_word() {
 	var word_now = rwords[0].split('');
 	var symb = 0;
 	var flag = false;
-
+	
+	right_answer_s = "";
 	for(var j = 0; j < word_now.length; j++) {
 		if(word_now[j] == "(") {
 			symb = j; 
@@ -140,7 +140,7 @@ function set_word() {
 
 		if(word_now[j] == word_now[j].toUpperCase() && flag == false 
 			&& word_now[j] != " ") {
-			if(word_now[j] != "(" && word_now[j] != ")") right_answer_s = word_now[j];
+			if(word_now[j] != "(" && word_now[j] != ")") right_answer_s += word_now[j];
 			word_now[j] = "_";
 		}
 
