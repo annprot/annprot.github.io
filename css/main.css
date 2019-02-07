@@ -27,7 +27,7 @@ body {
 #window, #er_window{
 	text-align: center;
 	max-width: 700px;
-	height: 200px;
+	height: 270px;
 	margin: auto auto;
 	display: none;
 	background: #fff;
@@ -54,7 +54,7 @@ body {
 	color: #fff;
 	font-size: 18px;
 	cursor: pointer;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 #er_window button.p_close:hover {
@@ -63,6 +63,17 @@ body {
 	color: black;
 	transition: background 0.8s;
 }
+
+.e_words {
+	width: 100%;
+	height: 100px; 
+	overflow-y: scroll;
+}
+
+
+
+
+
 
 #faq button {
 	cursor: pointer;
