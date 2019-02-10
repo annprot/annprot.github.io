@@ -9,13 +9,6 @@
 var jsonFile = new XMLHttpRequest();
 var url = "https://annprot.github.io/tasks/";
 
-//Initialize all words from JSON file
-jsonFile.onreadystatechange = function() {
-	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
-  		set_data(jsonFile.responseText);
-  	}
-  }
-
 //View all dictionaries for user
 function select_task(user_task) {
 	us_task = user_task;

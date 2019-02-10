@@ -3,6 +3,13 @@
 	* Here are a lot of different functions and methods for the game handler
 	*/
 
+//Initialize all words from JSON file
+jsonFile.onreadystatechange = function() {
+	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
+  		set_data(jsonFile.responseText);
+  }
+}
+
 start_game();
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
