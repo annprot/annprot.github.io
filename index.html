@@ -40,6 +40,9 @@
 	<section id="exercs">
 		<p>Выберите задание:</p>
 		<div class="list">
+			<button onclick="select_task(4);">4</button>
+			<button onclick="select_task(5);">5</button>
+			<button onclick="select_task(7);">7</button>
 			<button onclick="select_task(8);">8</button>
 			<button onclick="select_task(9);">9</button>
 			<button onclick="select_task(10);">10</button>
@@ -63,6 +66,7 @@
 				</form>
 				<button onclick="game_handle();">Проверить</button>
 				<p id="counter">1/6</p>
+				<a href="#" id="a_inform" target="_blank">К словарю</a>
 			</div>
 		</div>
 	</section>
@@ -120,7 +124,6 @@
 		$("#header").fadeIn(800);
 		$("#main").fadeIn(1000);
 	</script>
-	<script src="js/game_handle.js"></script>
 	<script src="js/tasks.js"></script>
 </body>
 </html>

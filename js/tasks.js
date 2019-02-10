@@ -24,5 +24,16 @@ function select_task(user_task) {
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
 	
-	start_game();
+	var script = document.createElement('script');
+	switch(user_task) {
+		case 4:
+			script.src = "js/game_handlers/accent_game_handle.js";
+		break;
+
+		default: 
+      script.src = "js/game_handlers/game_handle.js";
+		break;
+	}
+
+	document.getElementsByTagName('body')[0].appendChild(script);
 }

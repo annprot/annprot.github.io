@@ -215,7 +215,8 @@ header h1, #end h1 {
 }
 
 #main button:hover {
-	background: black;
+	background: none;
+	border: 1px solid #fff;
 	color: #fff;
 	transition: 1s background;
 	cursor: pointer;
@@ -234,6 +235,11 @@ header h1, #end h1 {
 
 #exercs p {
 	font-size: 24px;
+}
+
+#exercs .list {
+	max-width: 600px;
+	margin: 0 auto;
 }
 
 #exercs .list button {
@@ -378,6 +384,25 @@ header h1, #end h1 {
 #game .icons a:hover {
 	background: 0.5s #333;
 }
+
+#game .block #a_inform {
+	margin: 40px auto;
+	display: block;
+	color: #fff;
+	font-size: 17px;
+	text-decoration: none;
+	border: 1px dashed #fff;
+	padding: 15px 20px;
+	max-width: 150px;
+}
+
+#game .block #a_inform:hover {
+	background: #fff;
+	color: #FDC830;
+	transition: background 0.3s;
+}
+
+
 
 .parent {
 	width: 100%;
