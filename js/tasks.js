@@ -19,10 +19,6 @@ jsonFile.onreadystatechange = function() {
 //View all dictionaries for user
 function select_task(user_task) {
 	us_task = user_task;
-	window.url += user_task + ".json";
-
-	jsonFile.open("GET",url,true);
-	jsonFile.send();
 	
 	var script = document.createElement('script');
 	switch(user_task) {
@@ -34,6 +30,9 @@ function select_task(user_task) {
       script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
-
 	document.getElementsByTagName('body')[0].appendChild(script);
+
+	window.url += user_task + ".json";
+	jsonFile.open("GET",url,true);
+	jsonFile.send();
 }
