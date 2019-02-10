@@ -32,6 +32,8 @@ function start_game() {
 	document.getElementById("header").style.display = "none";
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
+
+	document.getElementById("task").innerHTML = "Напишите слово, выделив в нем ударение:"
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
