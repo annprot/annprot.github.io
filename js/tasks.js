@@ -19,13 +19,18 @@ function select_task(user_task) {
 			script.src = "js/game_handlers/accent_game_handle.js";
 		break;
 
+		case 5:
+			script.src = "js/game_handlers/paronyms_game_handle.js";
+		break;
+
 		default: 
-      script.src = "js/game_handlers/game_handle.js";
+      		script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
-	document.getElementsByTagName('body')[0].appendChild(script);
 
+	document.getElementsByTagName('body')[0].appendChild(script);
 	window.url += user_task + ".json";
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
+	window.url = "https://annprot.github.io/tasks/";
 }
