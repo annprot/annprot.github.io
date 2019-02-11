@@ -52,12 +52,9 @@ function set_data(datajson) {
 
 	for(var i = 0; i < data.words.length; i++) {
 		var pair_words = data.words[i].split("-");
-		p_words.set(pair_words[0], pair_words[1]);
+		p_words.set(pair_words[0].trim().toLowerCase(), pair_words[1]);
 
-		console.log(pair_words[0]);
-		
-
-		window.rwords.push(pair_words[0]);
+		window.rwords.push(pair_words[0].trim().toLowerCase());
 	}
 
 	rwords.sort(compareRandom);
@@ -74,6 +71,14 @@ function compareRandom(a, b) {
 //Button "check"
 function game_handle() {
 	var flag = false;
+
+	var right_answers;
+
+	try {
+		right_answers = p_words.get(rwords[0]).split(' ');
+	} catch(err) {
+		right_answers = p_words.get(rwords[0]);
+	}
 
 	if(document.getElementById("us_answer").value.trim() == right_answer.trim() || 
 		document.getElementById("us_answer").value.trim().toLowerCase() == right_answer_s.trim().toLowerCase() ) {
@@ -142,34 +147,13 @@ function set_word() {
 	document.getElementById("us_answer").click();
 
 	//replace the symbol
-	var word_now = rwords[0].split('');
-	var symb = 0;
-	var flag = false;
-	var repl = false;
-	
-	right_answer_s = "";
-	for(var j = 0; j < word_now.length; j++) {
-		if(word_now[j] == "(") {
-			symb = j; 
-			flag = true;
-		}
-
-		if(word_now[j] == word_now[j].toUpperCase() && flag == false 
-			&& word_now[j] != " ") {
-			if(word_now[j] != "(" && word_now[j] != ")") right_answer_s += word_now[j];
-		}
-
-	}
-
-	right_answer = rwords[0];
-	if(symb != 0) right_answer = rwords[0].substring(0, symb - 1);
 	//console.log(symb);
 	//console.log(word_now);
 	//console.log(right_answer);
 	//console.log(right_answer_s);
 
 	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0] + "&all=x";
-	document.getElementById("word").innerHTML = word_now.join('').toLowerCase();
+	document.getElementById("word").innerHTML = rwords[0];
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";
