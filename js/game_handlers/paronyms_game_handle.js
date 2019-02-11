@@ -14,8 +14,6 @@ jsonFile.onreadystatechange = function() {
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
 var position = 0; //now position
-var right_answer = "";
-var right_answer_s = "";
 var all_elem = 0;
 
 var p_words = new Map();
@@ -51,7 +49,7 @@ function set_data(datajson) {
 	data = JSON.parse(datajson);
 
 	for(var i = 0; i < data.words.length; i++) {
-		var pair_words = data.words[i].split("-");
+		var pair_words = data.words[i].split("–");
 		p_words.set(pair_words[0].trim().toLowerCase(), pair_words[1]);
 
 		window.rwords.push(pair_words[0].trim().toLowerCase());
@@ -73,15 +71,21 @@ function game_handle() {
 	var flag = false;
 
 	var right_answers;
-
 	try {
 		right_answers = p_words.get(rwords[0]).split(' ');
 	} catch(err) {
 		right_answers = p_words.get(rwords[0]);
 	}
 
-	if(document.getElementById("us_answer").value.trim() == right_answer.trim() || 
-		document.getElementById("us_answer").value.trim().toLowerCase() == right_answer_s.trim().toLowerCase() ) {
+	right_answers.shift();
+
+	//Check for the answer
+	var r_flag = false;
+	for(var i = 0; i < right_answers.length; i++) {
+		if(right_answers[i] == document.getElementById("us_answer").value.trim().toLowerCase()) r_flag = true;
+	}
+
+	if(r_flag) {
 		flag = true;
 		rwords.shift();
 		document.getElementById("us_answer").style.background = "#57CE79";
@@ -98,18 +102,17 @@ function game_handle() {
 	if(!flag) {
 		//alert("false");
 		//handle mistake
-		document.getElementById("us_answer").value = rwords[0];
+		document.getElementById("us_answer").value = right_answers.join(', ');
 		document.getElementById("us_answer").style.background = "#D63C3C";
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
 
-		var flag = false;
+		var a_flag = false;
 		for(var i = 0; i < rerrors.length; i++) {
-			if(rerrors[i] == rwords[0]) flag = true; 
+			if(rerrors[i] == rwords[0] + " - " + right_answers.join(', ')) a_flag = true; 
 		}
 
-		if(!flag) rerrors.push(rwords[0]);
-
+		if(!a_flag) rerrors.push(rwords[0] + " - " + right_answers.join(', '));
 
 		setTimeout(function () {
 			set_word();
@@ -133,7 +136,7 @@ function set_word() {
 
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
-			document.getElementById("us_errors").innerHTML += rerrors.join(', ');
+			document.getElementById("us_errors").innerHTML += rerrors.join('<br>');
 		}
 		else document.getElementById("btn_errors").style.display = "none";
 
@@ -145,12 +148,6 @@ function set_word() {
 
 	document.getElementById("us_answer").focus();
 	document.getElementById("us_answer").click();
-
-	//replace the symbol
-	//console.log(symb);
-	//console.log(word_now);
-	//console.log(right_answer);
-	//console.log(right_answer_s);
 
 	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0] + "&all=x";
 	document.getElementById("word").innerHTML = rwords[0];
