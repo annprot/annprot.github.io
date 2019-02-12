@@ -7,7 +7,7 @@
 jsonFile.onreadystatechange = function() {
 	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
   		set_data(jsonFile.responseText);
-  		start_game();
+  		view_blocks_tasks();
   }
 }
 
@@ -20,6 +20,16 @@ var p_words = new Map();
 var rwords = []; //all words
 var rerrors = []; //user's mistakes
 
+//Динамическое распределение слов по блокам
+//Handle the buttons of the task
+//Dynamic handle the buttons of the task
+document.addEventListener('click',function(e){
+	if(e.target && e.target.id == 'btn_block') {
+		var e_task = $(e.target).attr('class');
+		set_data_cut($(e.target).attr('class'));
+	}
+});
+
 //Input keys from the user's keyboard
 addEventListener("keydown", function(event) {
 	switch(event.keyCode) {
@@ -30,6 +40,35 @@ addEventListener("keydown", function(event) {
 		break;
 	}
 });
+
+//Отображаем сами блоки и динамически распределяем слова
+//Создаем кнопки с блоками
+//Каждый блок содержит до 25 слов
+//We divide the task to the blocks
+//Every block contains <= 25 words
+function view_blocks_tasks() {
+	if(data.words.length <= 25) start_game();
+	else {
+		var length = data.words.length;
+		var pos = 1;
+		var end_l = length - 25;
+		var html_code = "";
+
+		do {
+			html_code += '<button id="btn_block" class="' + length + "_" + end_l + '">' + "Блок " + pos +'</button>';
+			pos++;
+			length -= 25;
+			end_l = length - 25;
+			if(end_l < 0) end_l = 0;
+		} while(length > 0);
+
+		$("#block_tasks").append(html_code);
+
+		$("#exercs").fadeOut(500);
+		$("#faq").fadeOut(500);
+		$("#block_tasks").fadeIn(1000);
+	}
+}
 
 
 //Start game
@@ -55,15 +94,24 @@ function set_data(datajson) {
 		window.rwords.push(pair_words[0].trim().toLowerCase());
 	}
 
-	rwords.sort(compareRandom);
 	all_elem = rwords.length;
-
-	set_word();
 }
 
 //Sort of word list
 function compareRandom(a, b) {
 	return Math.random() - 0.5;
+}
+
+//Обработка выбранной кнопки(блок слов) пользователем
+//Slice the list of the words
+function set_data_cut(classname) {
+	var cut_position = classname.split("_");
+	rwords = rwords.slice(cut_position[1].trim(), cut_position[0].trim());
+	all_elem = rwords.length;
+	
+	rwords.sort(compareRandom);
+	set_word();
+	start_game();
 }
 
 //Button "check"

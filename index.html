@@ -72,6 +72,12 @@
 	</section>
 	<!-- End Main game with words -->
 
+	<!-- List of blocks of the task -->
+	<section id="block_tasks">
+		<p>Выберите блок со списком слов:</p>
+	</section>
+	<!-- End List of blocks of the task -->
+
 	<!-- Result of the game section -->
 	<section id="end">
 		<h1>Юху!</h1>
@@ -82,7 +88,8 @@
 		<a href="https://annprot.github.io">На главную страничку :)</a>
 	</section>
 	<!-- End Result of the game section -->
-
+	
+	<!-- User statistics POPUP -->
 	<section id="us_pop_er">
 		<div id="er_wrap" onclick="er_show('none')">
 			<div id="er_window">
@@ -94,11 +101,13 @@
 			</div>
 		</div>
 	</section>
+	<!-- End User statistics POPUP -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		var us_task = 0; //User task
+		var us_task = 0; //User task, задание, которое выбрал пользователь
 
+		//FAQ, пока не работает
 		//FAQ block 
 		function show(state) {
 			switch(state) {
@@ -114,16 +123,19 @@
 			}
 		}
 
-		//View all dictionaries for user
+		//Отображаем список всех заданий 
+		//View all tasks for user
 		function view_tasks() {
 			$("#main").fadeOut(500);
 			$("#exercs").fadeIn(2000);
 		}
 
-		//Animation appear the starts elements
+		//Стартовая анимация появления первого(главного) блока
+		//Animation appear the start elements
 		$("#header").fadeIn(800);
 		$("#main").fadeIn(1000);
 	</script>
+	<!-- Этот скрипт подгружает список слов для задания, которое выбрал пользователь -->
 	<script src="js/tasks.js"></script>
 </body>
 </html>

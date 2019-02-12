@@ -1,3 +1,9 @@
+/*
+	* All styles for the website!
+	* Все стили сайта собраны в этом файле!
+*/
+
+/* Стили для всей страницы */
 * {
 	font-family: 'Roboto', sans-serif;
 }
@@ -9,8 +15,14 @@ body {
 	background: -webkit-linear-gradient(to right, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to right, #F37335, #FDC830); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+/* Конец Стилей для всей страницы */
 
 
+
+
+
+
+/* Всплывающие окна (FAQ, User's errors) */
 #wrap, #er_wrap{
 	display: none;
 	position: fixed;
@@ -70,10 +82,9 @@ body {
 	overflow-y: scroll;
 }
 
-
-
-
-
+#us_pop_er {
+	display: none;
+}
 
 #faq button {
 	cursor: pointer;
@@ -170,7 +181,14 @@ body {
 	transition: 0.8s background;
 }
 
+/* Конец Всплывающих окон */
 
+
+
+
+
+
+/* Стартовая страница */
 header {
 	display: none;
 	color: #fff;
@@ -184,7 +202,6 @@ header h1, #end h1 {
 	margin: 20px auto;
 	font-size: 80px;
 }
-
 
 #main {
 	display: none;
@@ -227,6 +244,11 @@ header h1, #end h1 {
 	outline-offset: 0;
 }
 
+/* Конец Стартовой страницы */
+
+
+
+/* Блок с заданиями */
 #exercs {
 	display: none;
 	text-align: center;
@@ -261,10 +283,11 @@ header h1, #end h1 {
 	transition: background 0.8s;
 }
 
+/* Конец Блока с заданиями */
 
 
 
-
+/* Блок с игрой */
 #game {
 	display: none;
 	margin: 0 auto;
@@ -341,7 +364,6 @@ header h1, #end h1 {
 	outline-offset: 0;
 }
 
-
 #game button, #game button:active {
 	margin: 30px auto;
 	background: #fff;
@@ -402,8 +424,6 @@ header h1, #end h1 {
 	transition: background 0.3s;
 }
 
-
-
 .parent {
 	width: 100%;
 	height: 100%;
@@ -426,10 +446,50 @@ header h1, #end h1 {
 	left: 50%;
 	margin: -175px 0 0 -175px;
 }
+/* Конец Блока с игрой */
 
 
 
 
+
+
+/* Блок со списком блоков(генерируется JS) */
+#block_tasks {
+	max-width: 600px;
+	display: none;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#block_tasks p {
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+}
+
+#block_tasks #btn_block {
+	height: 60px;
+	width: 120px;
+	background: #fff;
+	color: #FDC830;
+	margin: 10px 15px;
+	padding: 10px 15px;
+	border: 1px solid #fff;
+	font-size: 18px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+#block_tasks #btn_block:hover {
+	background: none;
+	color: #fff;
+	transition: background 0.8s;
+}
+/* Конец Блока со списком блоков */
+
+
+
+/* Результат игры */
 #end {
 	display: none;
 	text-align: center;
@@ -507,12 +567,11 @@ header h1, #end h1 {
 	transition: 1 background;
 	transition: 0.8s border;
 }
-
-#us_pop_er {
-	display: none;
-}
+/* Конец Результата игры */
 
 
+
+/* ниже идут стили для мобильных устройств */
 @media screen and (max-width: 800px) {
 	header h1, #end h1 {
 		padding-top: 100px;
