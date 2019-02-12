@@ -181,7 +181,8 @@ function set_word() {
 		document.body.style.background = "#8E2DE2"; 
 		document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
 		document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
-
+		
+		document.getElementById("block_tasks").style.display = "none";
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
 			document.getElementById("us_errors").innerHTML += rerrors.join('<br>');
