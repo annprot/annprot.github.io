@@ -31,6 +31,11 @@ function select_task(user_task) {
 			script.src = "js/game_handlers/paronyms_game_handle.js";
 		break;
 
+		case 7:
+			//для 7 задания этот обработчик
+			script.src = "js/game_handlers/plural_game_handle.js";
+		break;
+
 		default: 
 			//для всех остальных заданий этот обработчик
       script.src = "js/game_handlers/game_handle.js";
