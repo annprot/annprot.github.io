@@ -136,7 +136,7 @@ function game_handle() {
 	if(!flag) {
 		//alert("false");
 		//handle mistake
-		document.getElementById("us_answer").value = rwords[0];
+		document.getElementById("us_answer").value = rwords[0].toLowerCase();
 		document.getElementById("us_answer").style.background = "#D63C3C";
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
