@@ -40,17 +40,17 @@
 	<section id="exercs">
 		<p>Выберите задание:</p>
 		<div class="list">
-			<button onclick="select_task(4);">4</button>
-			<button onclick="select_task(5);">5</button>
-			<button onclick="select_task(7);">7</button>
-			<button onclick="select_task(8);">8</button>
-			<button onclick="select_task(9);">9</button>
-			<button onclick="select_task(10);">10</button>
-			<button onclick="select_task(11);">11</button>
-			<button onclick="select_task(12);">12</button>
-			<button onclick="select_task(13);">13</button>
-			<button onclick="select_task(14);">14</button>
-			<button onclick="select_task(15);">15</button>
+			<button onclick='select_task("4");'>4</button>
+			<button onclick='select_task("5");'>5</button>
+			<button onclick='select_task("7");'>7</button>
+			<button onclick='select_task("8");'>8</button>
+			<button onclick='select_task("9");'>9</button>
+			<button onclick='select_task("10")'">10</button>
+			<button onclick='select_task("11")'">11</button>
+			<button onclick='select_task("12")'">12</button>
+			<button onclick='select_task("13")'">13</button>
+			<button onclick='select_task("14")'">14</button>
+			<button onclick='select_task("15")'">15</button>
 		</div>
 	</section>
 	<!-- End Dictionaries section -->
@@ -64,7 +64,12 @@
 				<form onsubmit="return false;" autocomplete="off">
 					<input type="text" id="us_answer">
 				</form>
-				<button onclick="game_handle();">Проверить</button>
+				<button id="game_handle_btn" onclick="game_handle();">Проверить</button>
+				<!-- Блок активен только в некоторых заданиях -->
+				<div id="btn_answers">
+					
+				</div>
+				<!-- Конец блока, активного только в некоторых заданиях -->
 				<p id="counter">1/6</p>
 				<a href="#" id="a_inform" target="_blank">К словарю</a>
 			</div>
@@ -112,6 +117,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var us_task = 0; //User task, задание, которое выбрал пользователь
+		var game_mode = 0; //Game mode, если доступны режимы, то переменная используется
 
 		//FAQ, пока не работает
 		//FAQ block 

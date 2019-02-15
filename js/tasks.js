@@ -3,7 +3,7 @@
 	* Send POST request to file with a dictionary
 	* !JSON! 
 	* Этот файл загружает все необходимые слова для выбранного задания
-	* Осторожно! JSON формат!
+	* Осторожно, JSON формат!
 */
 
 //Получаем список слов по ссылке
@@ -13,25 +13,51 @@
 var jsonFile = new XMLHttpRequest();
 var url = "https://annprot.github.io/tasks/";
 
+
+//для 4 задания функция, реализующая вызов основного блока
+function request_data_to_4() {
+	get_data("4");
+}
+
+//Выбор режима игры(для некоторых заданий)
+function select_task(user_task) {
+	var html_code = "";
+	switch(user_task) {
+		case "4":
+			html_code += '<button onclick="game_mode=0;request_data_to_4();">Режим запоминания</button>';
+			html_code += '<button onclick="game_mode=1;request_data_to_4();;">Упрощённый режим</button>';
+			$("#mode_game").append(html_code);
+
+			$("#exercs").fadeOut(1000);
+			$("#mode_game").fadeIn(1000);
+		break;
+
+		default: 
+			get_data(user_task);
+		break;
+	}
+}
+
 //Функция получает список слов
 //Функция подгружает необходимый обработчик самой игры для выбранного задания
 //Get the list of words for the task
-function select_task(user_task) {
+function get_data(user_task) {
 	us_task = user_task;
 	
 	var script = document.createElement('script');
 	switch(user_task) {
-		case 4:
+		case "4":
 			//для 4 задания этот обработчик
-			script.src = "js/game_handlers/accent_game_handle.js";
+			if(game_mode == 0) script.src = "js/game_handlers/accent_game_handle_0.js";
+			else script.src = "js/game_handlers/accent_game_handle_1.js";
 		break;
 
-		case 5:
+		case "5":
 			//для 5 задания этот обработчик
 			script.src = "js/game_handlers/paronyms_game_handle.js";
 		break;
 
-		case 7:
+		case "7":
 			//для 7 задания этот обработчик
 			script.src = "js/game_handlers/plural_game_handle.js";
 		break;
