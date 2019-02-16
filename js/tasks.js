@@ -12,6 +12,7 @@
 //Dictionary is a JSON file
 var jsonFile = new XMLHttpRequest();
 var url = "https://annprot.github.io/tasks/";
+var request_state = false;
 
 
 //для 4 задания функция, реализующая вызов основного блока
@@ -64,13 +65,14 @@ function get_data(user_task) {
 
 		default: 
 			//для всех остальных заданий этот обработчик
-      script.src = "js/game_handlers/game_handle.js";
+     			 script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
 
 	//подключаем скрипт к странице
 	//далее передаем управление скрипту, который был подключен
-	document.getElementsByTagName('body')[0].appendChild(script);
+	if(!request_state) document.getElementsByTagName('body')[0].appendChild(script);
+	request_state = true;
 	window.url += user_task + ".json";
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
