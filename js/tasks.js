@@ -71,10 +71,10 @@ function get_data(user_task) {
 
 	//подключаем скрипт к странице
 	//далее передаем управление скрипту, который был подключен
-	if(!request_state) document.getElementsByTagName('body')[0].appendChild(script);
-	request_state = true;
 	window.url += user_task + ".json";
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
+	if(!request_state) document.getElementsByTagName('body')[0].appendChild(script);
+	request_state = true;
 	window.url = "https://annprot.github.io/tasks/";
 }
