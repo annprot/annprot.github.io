@@ -1,6 +1,4 @@
 /*
-	* Game mode == 1
-	* Create buttons for user's answer
 	* This file is connected to the main page.
 	* Here are a lot of different functions and methods for the game handler
 	*/
@@ -16,10 +14,10 @@ jsonFile.onreadystatechange = function() {
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
 var position = 0; //now position
+var all_elem = 0; //count all elements
 var right_answer = "";
-var right_answer_s = "";
-var all_elem = 0;
 
+var p_words = new Map();
 var rwords = []; //all words
 var rerrors = []; //user's mistakes
 
@@ -32,15 +30,14 @@ document.addEventListener('click',function(e){
 		set_data_cut($(e.target).attr('class'));
 	}
 
-	if(e.target && e.target.id == 'ac_btn_game') {
+	if(e.target && e.target.id == 'ac_btn_accent') {
 		//debug only
-		//alert($(e.target).attr('class'));
+		//alert(e.target.innerHTML);
 		//alert(right_answer_s);
-		game_handle(right_answer_s, $(e.target).attr('class'));
+		game_handle(right_answer, e.target.innerHTML, $(e.target).attr('class'));
 	}
 });
 
-//Обработка клавиши "enter" для отправки ответа
 //Input keys from the user's keyboard
 addEventListener("keydown", function(event) {
 	switch(event.keyCode) {
@@ -81,17 +78,20 @@ function view_blocks_tasks() {
 	}
 }
 
+
 //Start game
 function start_game() {
 	document.getElementById("header").style.display = "none";
 	document.getElementById("main").style.display = "none";
-	document.getElementById("main").style.display = "none";
+	document.getElementById("task").style.fontWeight = "100";
 
 	document.getElementById("us_answer").style.display = "none";
 	document.getElementById("game_handle_btn").style.display = "none";
 	document.getElementById("btn_answers").style.paddingBottom  = "50px";
 
-	document.getElementById("task").innerHTML = "Выберите букву, на которую падает ударение в слове:"
+	document.getElementById("task").innerHTML = "Выберите правильный ответ:"
+	$("#exercs").fadeOut(1000);
+	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
 }
 
@@ -100,14 +100,15 @@ function set_data(datajson) {
 	data = JSON.parse(datajson);
 
 	for(var i = 0; i < data.words.length; i++) {
-		window.rwords.push(data.words[i]);
+		var pair_words = data.words[i].split("-->");
+		p_words.set(pair_words[0].trim().toLowerCase(), pair_words[1]);
+
+		rwords.push(pair_words[0].trim().toLowerCase());
 	}
 
-	//alert(rwords);
 	all_elem = rwords.length;
 }
 
-//Рандомная сортировка слов в списке
 //Sort of word list
 function compareRandom(a, b) {
 	return Math.random() - 0.5;
@@ -126,16 +127,15 @@ function set_data_cut(classname) {
 }
 
 //Button "check"
-function game_handle(right_answ, user_answ) {
+function game_handle(right_answ, user_answ, btn_class) {
 	var flag = false;
 
 	if(right_answ == user_answ) {
 		flag = true;
 		rwords.shift();
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.background = "#57CE79";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.border = "1px solid #57CE79";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.color = "#fff";
-
+		document.getElementById('btn_answers').getElementsByClassName(btn_class)[0].style.background = "#57CE79";
+		document.getElementById('btn_answers').getElementsByClassName(btn_class)[0].style.border = "1px solid #57CE79";
+		document.getElementById('btn_answers').getElementsByClassName(btn_class)[0].style.color = "#fff";
 
 		position++;
 
@@ -145,19 +145,20 @@ function game_handle(right_answ, user_answ) {
 		}, 1000);
 	}
 
+
 	if(!flag) {
 		//alert("false");
 		//handle mistake
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.background = "#D63C3C";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.border = "1px solid #D63C3C";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.color = "#fff";
+	  document.getElementById('btn_answers').getElementsByClassName(btn_class)[0].style.background = "#D63C3C";
+	  document.getElementById('btn_answers').getElementsByClassName(btn_class)[0].style.border = "1px solid #D63C3C";
+	  document.getElementById('btn_answers').getElementsByClassName(btn_class)[0].style.color = "#fff";
 
-		var flag = false;
+		var a_flag = false;
 		for(var i = 0; i < rerrors.length; i++) {
-			if(rerrors[i] == rwords[0]) flag = true; 
+			if(rerrors[i] == p_words.get(rwords[0])) a_flag = true; 
 		}
 
-		if(!flag) rerrors.push(rwords[0]);
+		if(!a_flag) rerrors.push(p_words.get(rwords[0]));
 	} 
 }
 
@@ -178,7 +179,7 @@ function set_word() {
 		document.getElementById("block_tasks").style.display = "none";
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
-			document.getElementById("us_errors").innerHTML += rerrors.join(', ');
+			document.getElementById("us_errors").innerHTML += rerrors.join('<br>');
 		}
 		else document.getElementById("btn_errors").style.display = "none";
 
@@ -188,45 +189,22 @@ function set_word() {
 		return;
 	}
 
-	document.getElementById("us_answer").focus();
-	document.getElementById("us_answer").click();
-
-	//replace the symbol
-	var word_now = rwords[0].split('');
-	var symb = 0;
-	var flag = false;
-	var repl = false;
+	var word_now = p_words.get(rwords[0]).split('-');
+	right_answer = word_now[0];
+	word_now.sort(compareRandom);
 	var html_code = "";
-	
-	right_answer_s = "";
+
 	for(var j = 0; j < word_now.length; j++) {
-		if(word_now[j] == "(") {
-			symb = j; 
-			flag = true;
-		}
-
-		if(word_now[j] == word_now[j].toUpperCase() && flag == false 
-			&& word_now[j] != " ") {
-			if(word_now[j] != "(" && word_now[j] != ")") right_answer_s = j + 1;
-		}
-
-		if(word_now[j].toLowerCase() == "а" || word_now[j].toLowerCase() == "я" ||
-			word_now[j].toLowerCase() == "е" || word_now[j].toLowerCase() == "ё" ||
-			word_now[j].toLowerCase() == "и" || word_now[j].toLowerCase() == "ю" ||
-			word_now[j].toLowerCase() == "у" || word_now[j].toLowerCase() == "э" ||
-			word_now[j].toLowerCase() == "о" || word_now[j].toLowerCase() == "ы") {
-			html_code += '<button id="ac_btn_game" class="' + (j + 1) + '">' + word_now[j].toLowerCase() + '</button>';
-		}
+		html_code += '<button id="ac_btn_accent" class="' + (j + 1) + '">' + word_now[j].toLowerCase() + '</button>';
 	}
 
 	$("#btn_answers").append(html_code);
-	//console.log(symb);
-	//console.log(word_now);
-	//console.log(right_answer);
-	//console.log(right_answer_s);
 
-	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0].toLowerCase(); + "&all=x";
-	document.getElementById("word").innerHTML = word_now.join('').toLowerCase();
+	document.getElementById("us_answer").focus();
+	document.getElementById("us_answer").click();
+
+	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + p_words.get(rwords[0]).split("-")[0] + "&all=x";
+	document.getElementById("word").innerHTML = rwords[0];
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";

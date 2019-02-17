@@ -460,8 +460,19 @@ header h1, #end h1 {
 	transition: background 0.3s;
 }
 
+/* 4 задание */
 #game #btn_answers button {
 	width: 60px;
+	height: 60px;
+	margin: 10px;
+	margin-top: 30px;
+	padding: 10px;
+	display: inline-block;
+}
+
+/* 7 задание */
+#game #btn_answers button#ac_btn_accent {
+	width: auto;
 	height: 60px;
 	margin: 10px;
 	margin-top: 30px;

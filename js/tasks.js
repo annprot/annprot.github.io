@@ -20,6 +20,11 @@ function request_data_to_4() {
 	get_data("4");
 }
 
+//для 7 задания функция, реализующая вызов основного блока
+function request_data_to_7() {
+	get_data("7");
+}
+
 //Выбор режима игры(для некоторых заданий)
 function select_task(user_task) {
 	var html_code = "";
@@ -27,6 +32,15 @@ function select_task(user_task) {
 		case "4":
 			html_code += '<button onclick="game_mode=0;request_data_to_4();">Режим запоминания</button>';
 			html_code += '<button onclick="game_mode=1;request_data_to_4();;">Упрощённый режим</button>';
+			$("#mode_game").append(html_code);
+
+			$("#exercs").fadeOut(1000);
+			$("#mode_game").fadeIn(1000);
+		break;
+
+		case "7":
+			html_code += '<button onclick="game_mode=1;request_data_to_7();">Исправь ошибку</button>';
+			html_code += '<button onclick="game_mode=0;request_data_to_7();;">Образование мн. формы слова</button>';
 			$("#mode_game").append(html_code);
 
 			$("#exercs").fadeOut(1000);
@@ -60,12 +74,16 @@ function get_data(user_task) {
 
 		case "7":
 			//для 7 задания этот обработчик
-			script.src = "js/game_handlers/plural_game_handle.js";
+			if(game_mode == 0) script.src = "js/game_handlers/plural_game_handle_0.js";
+			else {
+				user_task = "7_1";
+				script.src = "js/game_handlers/plural_game_handle_1.js";
+			}
 		break;
 
 		default: 
 			//для всех остальных заданий этот обработчик
-     			 script.src = "js/game_handlers/game_handle.js";
+     	script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
 
