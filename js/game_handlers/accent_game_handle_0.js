@@ -10,6 +10,7 @@ jsonFile.onreadystatechange = function() {
 	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
   		set_data(jsonFile.responseText);
   		view_blocks_tasks();
+		console.log("work");
   }
 }
 
