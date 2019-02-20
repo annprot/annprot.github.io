@@ -81,7 +81,7 @@ function set_data(datajson) {
 	data = JSON.parse(datajson);
 
 	for(var i = 0; i < data.words.length; i++) {
-		var pair_words = data.words[i].split("-");
+		var pair_words = data.words[i].split("–");
 		p_words.set(pair_words[0].trim().toLowerCase(), pair_words[1]);
 
 		window.rwords.push(pair_words[0].trim().toLowerCase());
