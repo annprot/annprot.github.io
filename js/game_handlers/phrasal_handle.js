@@ -1,23 +1,17 @@
 /*
-	* Обработчик стандартных заданий
 	* This file is connected to the main page.
 	* Here are a lot of different functions and methods for the game handler
-*/
-
+	*/
 
 clearTimeout(waiting);//fix waiting for the file
 
-//==================
-//Все для самой игры
-//==================
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
-var position = 0; //Now position in the task
-var right_answer = ""; //Contains the right answer for user's task
-var right_answer_s = ""; //Contains the symbol of right answer for user's task
-var all_elem = 0; //Number of words in the task
+var position = 0; //now position
+var all_elem = 0;
 
-var rwords = []; //All words
-var rerrors = []; //User's mistakes
+var p_words = new Map();
+var rwords = []; //all words
+var rerrors = []; //user's mistakes
 
 //Динамическое распределение слов по блокам
 //Handle the buttons of the task
@@ -29,7 +23,6 @@ document.addEventListener('click',function(e){
 	}
 });
 
-//Обработка клавиши "enter" для отправки ответа
 //Input keys from the user's keyboard
 addEventListener("keydown", function(event) {
 	switch(event.keyCode) {
@@ -70,18 +63,33 @@ function view_blocks_tasks() {
 	}
 }
 
-//Старт игры
+
 //Start game
 function start_game() {
 	document.getElementById("header").style.display = "none";
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
+
+	document.getElementById("task").innerHTML = "Напишите пароним к слову:"
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
 }
 
-//Рандомная сортировка слов в списке
+//Initialize all data from JSON file
+function set_data(datajson) {
+	data = JSON.parse(datajson);
+
+	for(var i = 0; i < data.words.length; i++) {
+		var pair_words = data.words[i].split("-");
+		p_words.set(pair_words[0].trim().toLowerCase(), pair_words[1]);
+
+		window.rwords.push(pair_words[0].trim().toLowerCase());
+	}
+
+	all_elem = rwords.length;
+}
+
 //Sort of word list
 function compareRandom(a, b) {
 	return Math.random() - 0.5;
@@ -99,26 +107,12 @@ function set_data_cut(classname) {
 	start_game();
 }
 
-//Загружаем целый список слов из JSON файла
-//Initialize all data from JSON file
-function set_data(datajson) {
-	data = JSON.parse(datajson);
-
-	for(var i = 0; i < data.words.length; i++) {
-		window.rwords.push(data.words[i]);
-	}
-
-	all_elem = rwords.length;
-}
-
-//Кнопка "Проверить"
 //Button "check"
 function game_handle() {
 	var flag = false;
 
-	if(document.getElementById("us_answer").value.toLowerCase().trim() == right_answer.toLowerCase().trim() || 
-		document.getElementById("us_answer").value.toLowerCase().trim() == right_answer_s.toLowerCase().trim() ) {
-		flag = true; //ответ верный or right answer
+	if(document.getElementById("us_answer").value.toLowerCase().trim() == p_words.get(rwords[0]).toLowerCase().trim()) {
+		flag = true;
 		rwords.shift();
 		document.getElementById("us_answer").style.background = "#57CE79";
 		document.getElementById("us_answer").style.border = "1px solid #57CE79";
@@ -132,20 +126,19 @@ function game_handle() {
 	}
 
 	if(!flag) {
-		//ответ неверный
+		//alert("false");
 		//handle mistake
-		document.getElementById("us_answer").value = rwords[0];
+		document.getElementById("us_answer").value = p_words.get(rwords[0]).toLowerCase().trim();
 		document.getElementById("us_answer").style.background = "#D63C3C";
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
 
-		var flag = false;
+		var a_flag = false;
 		for(var i = 0; i < rerrors.length; i++) {
-			if(rerrors[i] == rwords[0]) flag = true; 
+			if(rerrors[i] == rwords[0] + " - " + p_words.get(rwords[0])) a_flag = true; 
 		}
 
-		if(!flag) rerrors.push(rwords[0]);
-
+		if(!a_flag) rerrors.push(rwords[0] + " - " + p_words.get(rwords[0]));
 
 		setTimeout(function () {
 			set_word();
@@ -153,14 +146,12 @@ function game_handle() {
 	} 
 }
 
-//Следующее слово, функция автоматически вызывается кнопкой "Проверить"
 //Change the word
 function set_word() {
 	//Start game
 	gameWork = true;
 	//the end of the list
 	if(position == all_elem) {
-		//Игра завершена, выводим необходимый блок
 		document.getElementById("game").style.display = "none";
 		document.getElementById("number").innerHTML = us_task;
 		document.getElementById("end_text").innerHTML += us_task + " задания!";
@@ -168,11 +159,11 @@ function set_word() {
 		document.body.style.background = "#8E2DE2"; 
 		document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
 		document.body.style.background = "linear-gradient(to right, #4A00E0, #8E2DE2)"; 
-
+		
 		document.getElementById("block_tasks").style.display = "none";
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
-			document.getElementById("us_errors").innerHTML += rerrors.join(', ');
+			document.getElementById("us_errors").innerHTML += rerrors.join('<br>');
 		}
 		else document.getElementById("btn_errors").style.display = "none";
 
@@ -185,41 +176,8 @@ function set_word() {
 	document.getElementById("us_answer").focus();
 	document.getElementById("us_answer").click();
 
-	//Алгоритм разбивает слово в необходимый для себя формат
-	//replace the symbol
-	var word_now = rwords[0].split('');
-	var symb = 0;
-	var flag = false;
-	var repl = false;
-	
-	right_answer_s = "";
-	for(var j = 0; j < word_now.length; j++) {
-		if(word_now[j] == "(") {
-			symb = j; 
-			flag = true;
-		}
-
-		if(word_now[j] == word_now[j].toUpperCase() && flag == false 
-			&& word_now[j] != " ") {
-			if(word_now[j] != "(" && word_now[j] != ")") right_answer_s += word_now[j];
-		if(!repl) { 
-			word_now[j] = "_";
-			repl = true;
-		} else word_now[j] = "";
-
-	}
-
-}
-
-right_answer = rwords[0].toLowerCase();
-if(symb != 0) right_answer = rwords[0].substring(0, symb - 1);
-	//debug only
-	//console.log(symb);
-	//console.log(word_now);
-	//console.log(right_answer);
-	//console.log(right_answer_s);
-	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0] + "&all=x";
-	document.getElementById("word").innerHTML = word_now.join('');
+	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + p_words.get(rwords[0]) + "&all=x";
+	document.getElementById("word").innerHTML = rwords[0];
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";
@@ -228,18 +186,19 @@ if(symb != 0) right_answer = rwords[0].substring(0, symb - 1);
 }
 
 
+
 //Errors popup
 //FAQ block 
 function er_show(state) {
 	switch(state) {
 		case "block":
-		$("#er_window").fadeIn(1000);
-		$("#er_wrap").fadeIn(1000);
+			$("#er_window").fadeIn(1000);
+			$("#er_wrap").fadeIn(1000);
 		break;
 
 		case "none":
-		$("#er_window").fadeOut(1000);
-		$("#er_wrap").fadeOut(1000);
+			$("#er_window").fadeOut(1000);
+			$("#er_wrap").fadeOut(1000);
 		break;
 	}
 }

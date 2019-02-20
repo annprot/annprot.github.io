@@ -97,6 +97,11 @@ function get_data(user_task) {
 			}
 		break;
 
+		case "14":
+			//для 14 задания этот обработчик
+			script.src = "js/game_handlers/phrasal_handle.js";
+		break;
+
 		default: 
 			//для всех остальных заданий этот обработчик
      	script.src = "js/game_handlers/game_handle.js";
