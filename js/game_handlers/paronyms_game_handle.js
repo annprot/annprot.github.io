@@ -3,14 +3,7 @@
 	* Here are a lot of different functions and methods for the game handler
 	*/
 
-//Initialize all words from JSON file
-jsonFile.onreadystatechange = function() {
-	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
-  		set_data(jsonFile.responseText);
-  		view_blocks_tasks();
-  }
-}
-
+clearTimeout(waiting);//fix waiting for the file
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
 var position = 0; //now position

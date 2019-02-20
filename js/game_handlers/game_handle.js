@@ -5,14 +5,7 @@
 */
 
 
-//Получаем все слова из задания, которое выбрал пользователь
-//Initialize all words from JSON file
-jsonFile.onreadystatechange = function() {
-	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
-		set_data(jsonFile.responseText);
-		view_blocks_tasks();
-  }
-}
+clearTimeout(waiting);//fix waiting for the file
 
 //==================
 //Все для самой игры

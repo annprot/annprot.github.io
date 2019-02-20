@@ -13,7 +13,23 @@
 var jsonFile = new XMLHttpRequest();
 var url = "https://annprot.github.io/tasks/";
 var request_state = false;
+var waiting; //waiting for loading the game handler
 
+//Initialize all words from JSON file
+jsonFile.onreadystatechange = function() {
+	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
+  		try {
+  			set_data(jsonFile.responseText);
+	  		view_blocks_tasks();
+  		} catch(e) {
+  				waiting = setTimeout(function(){
+  					console.log("waiting..."); 
+	  				set_data(jsonFile.responseText);
+			  		view_blocks_tasks();
+  			}, 500);
+  		}
+  }
+}
 
 //для 4 задания функция, реализующая вызов основного блока
 function request_data_to_4() {
@@ -89,10 +105,10 @@ function get_data(user_task) {
 
 	//подключаем скрипт к странице
 	//далее передаем управление скрипту, который был подключен
+	if(!request_state) document.getElementsByTagName('body')[0].appendChild(script);
+	request_state = true;
 	window.url += user_task + ".json";
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
-	if(!request_state) document.getElementsByTagName('body')[0].appendChild(script);
-	request_state = true;
 	window.url = "https://annprot.github.io/tasks/";
 }
