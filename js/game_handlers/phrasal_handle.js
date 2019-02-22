@@ -70,7 +70,7 @@ function start_game() {
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
 
-	document.getElementById("task").innerHTML = "Напишите пароним к слову:"
+	document.getElementById("task").innerHTML = "Раскройте скобки:"
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
