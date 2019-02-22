@@ -3,12 +3,13 @@
 	* Here are a lot of different functions and methods for the game handler
 	*/
 
-console.log("File is connected to the page!");
+	console.log("File is connected to the page!");
 clearTimeout(waiting);//fix waiting for the file
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
 var position = 0; //now position
-var all_elem = 0;
+var all_elem = 0; //count all emenents in the list
+var h_enter = false;
 
 var p_words = new Map();
 var rwords = []; //all words
@@ -26,14 +27,18 @@ document.addEventListener('click',function(e){
 
 //Input keys from the user's keyboard
 addEventListener("keydown", function(event) {
-	switch(event.keyCode) {
+	if(event.keyCode == 13) {
+		if(h_enter) return;
+    h_enter = true;
 
-		//enter listener
-		case 13:
-			if(gameWork) game_handle();
-		break;
+    if(gameWork) game_handle();
 	}
-});
+}, false);
+
+//Input keys from the user's keyboard
+addEventListener('keyup', function () {
+    h_enter = false;
+}, false);
 
 //Отображаем сами блоки и динамически распределяем слова
 //Создаем кнопки с блоками
@@ -130,17 +135,17 @@ function game_handle() {
 	if(!flag) {
 		//alert("false");
 		//handle mistake
-		document.getElementById("us_answer").value = p_words.get(rwords[0]).toLowerCase().trim();
+		document.getElementById("us_answer").placeholder = p_words.get(rwords[0]).toLowerCase().trim();
 		document.getElementById("us_answer").style.background = "#D63C3C";
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
 
 		var a_flag = false;
 		for(var i = 0; i < rerrors.length; i++) {
-			if(rerrors[i] == rwords[0] + " - " + p_words.get(rwords[0])) a_flag = true; 
+			if(rerrors[i] == rwords[0] + " - " + p_words.get(rwords[0]).toLowerCase()) a_flag = true; 
 		}
 
-		if(!a_flag) rerrors.push(rwords[0] + " - " + p_words.get(rwords[0]));
+		if(!a_flag) rerrors.push(rwords[0] + " - " + p_words.get(rwords[0]).toLowerCase());
 
 		setTimeout(function () {
 			set_word();
@@ -179,6 +184,7 @@ function set_word() {
 
 	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + p_words.get(rwords[0]) + "&all=x";
 	document.getElementById("word").innerHTML = rwords[0];
+	document.getElementById("us_answer").placeholder = '';
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";
@@ -193,13 +199,13 @@ function set_word() {
 function er_show(state) {
 	switch(state) {
 		case "block":
-			$("#er_window").fadeIn(1000);
-			$("#er_wrap").fadeIn(1000);
+		$("#er_window").fadeIn(1000);
+		$("#er_wrap").fadeIn(1000);
 		break;
 
 		case "none":
-			$("#er_window").fadeOut(1000);
-			$("#er_wrap").fadeOut(1000);
+		$("#er_window").fadeOut(1000);
+		$("#er_wrap").fadeOut(1000);
 		break;
 	}
 }

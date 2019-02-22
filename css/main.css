@@ -395,6 +395,11 @@ header h1, #end h1 {
 	transition: 0.5s background;
 }
 
+#game input::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
 #game input:active, :hover, :focus {
 	outline: 0;
 	outline-offset: 0;
