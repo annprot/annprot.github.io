@@ -3,6 +3,7 @@
 	* Here are a lot of different functions and methods for the game handler
 	*/
 
+console.log("File is connected to the page!");
 clearTimeout(waiting);//fix waiting for the file
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game

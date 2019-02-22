@@ -116,4 +116,5 @@ function get_data(user_task) {
 	jsonFile.open("GET",url,true);
 	jsonFile.send();
 	window.url = "https://annprot.github.io/tasks/";
+	console.log("The main function is ready!");
 }
