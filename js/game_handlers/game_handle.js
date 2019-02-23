@@ -5,8 +5,6 @@
 */
 
 
-clearTimeout(waiting);//fix waiting for the file
-
 //==================
 //Все для самой игры
 //==================
@@ -15,6 +13,7 @@ var position = 0; //Now position in the task
 var right_answer = ""; //Contains the right answer for user's task
 var right_answer_s = ""; //Contains the symbol of right answer for user's task
 var all_elem = 0; //Number of words in the task
+var h_enter = false; //fix longing enter
 
 var rwords = []; //All words
 var rerrors = []; //User's mistakes
@@ -32,14 +31,18 @@ document.addEventListener('click',function(e){
 //Обработка клавиши "enter" для отправки ответа
 //Input keys from the user's keyboard
 addEventListener("keydown", function(event) {
-	switch(event.keyCode) {
+	if(event.keyCode == 13) {
+		if(h_enter) return;
+    h_enter = true;
 
-		//enter listener
-		case 13:
-			if(gameWork) game_handle();
-		break;
+    if(gameWork) game_handle();
 	}
-});
+}, false);
+
+//Input keys from the user's keyboard
+addEventListener('keyup', function () {
+    h_enter = false;
+}, false);
 
 //Отображаем сами блоки и динамически распределяем слова
 //Создаем кнопки с блоками
@@ -47,6 +50,7 @@ addEventListener("keydown", function(event) {
 //We divide the task to the blocks
 //Every block contains <= 25 words
 function view_blocks_tasks() {
+	clearTimeout(waiting);//fix waiting for the file
 	if(data.words.length <= 25) start_game();
 	else {
 		var length = data.words.length;
@@ -135,7 +139,8 @@ function game_handle() {
 	if(!flag) {
 		//ответ неверный
 		//handle mistake
-		document.getElementById("us_answer").value = rwords[0];
+		document.getElementById("us_answer").value = "";
+		document.getElementById("us_answer").placeholder = rwords[0];
 		document.getElementById("us_answer").style.background = "#D63C3C";
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
@@ -220,6 +225,7 @@ if(symb != 0) right_answer = rwords[0].substring(0, symb - 1);
 	//console.log(right_answer_s);
 	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0] + "&all=x";
 	document.getElementById("word").innerHTML = word_now.join('');
+	document.getElementById("us_answer").placeholder = '';
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";

@@ -9,7 +9,7 @@ var gameWork = false; //If the user is in the game, he can press 'enter' and 'sh
 var position = 0; //now position
 var all_elem = 0; //count all emenents in the list
 var h_enter = false; //fix longing enter
-var right_answer_p = "";
+var right_answer_p = ""; //right answer
 
 var p_words = new Map();
 var rwords = []; //all words

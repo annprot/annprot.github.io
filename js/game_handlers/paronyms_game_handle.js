@@ -3,11 +3,10 @@
 	* Here are a lot of different functions and methods for the game handler
 	*/
 
-clearTimeout(waiting);//fix waiting for the file
-
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
 var position = 0; //now position
-var all_elem = 0;
+var all_elem = 0; //count all emenents in the list
+var h_enter = false; //fix longing enter
 
 var p_words = new Map();
 var rwords = []; //all words
@@ -25,14 +24,18 @@ document.addEventListener('click',function(e){
 
 //Input keys from the user's keyboard
 addEventListener("keydown", function(event) {
-	switch(event.keyCode) {
+	if(event.keyCode == 13) {
+		if(h_enter) return;
+    h_enter = true;
 
-		//enter listener
-		case 13:
-			if(gameWork) game_handle();
-		break;
+    if(gameWork) game_handle();
 	}
-});
+}, false);
+
+//Input keys from the user's keyboard
+addEventListener('keyup', function () {
+    h_enter = false;
+}, false);
 
 //Отображаем сами блоки и динамически распределяем слова
 //Создаем кнопки с блоками
@@ -98,6 +101,7 @@ function compareRandom(a, b) {
 //Обработка выбранной кнопки(блок слов) пользователем
 //Slice the list of the words
 function set_data_cut(classname) {
+	clearTimeout(waiting);//fix waiting for the file
 	var cut_position = classname.split("_");
 	rwords = rwords.slice(cut_position[1].trim(), cut_position[0].trim());
 	all_elem = rwords.length;
@@ -144,7 +148,8 @@ function game_handle() {
 	if(!flag) {
 		//alert("false");
 		//handle mistake
-		document.getElementById("us_answer").value = right_answers.join(', ');
+		document.getElementById("us_answer").value = "";
+		document.getElementById("us_answer").placeholder = right_answers.join(', ');
 		document.getElementById("us_answer").style.background = "#D63C3C";
 		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
 		document.getElementById("us_answer").style.color = "#fff";
@@ -193,6 +198,7 @@ function set_word() {
 
 	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0] + "&all=x";
 	document.getElementById("word").innerHTML = rwords[0];
+	document.getElementById("us_answer").placeholder = '';
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";
