@@ -210,7 +210,7 @@ function set_word() {
 	document.getElementById("us_answer").click();
 
 	//generate buttons
-	var word_now = rwords[0].split('');
+	var word_now = p_words.get(rwords[0]).trim().split('');
 	var symb = 0;
 	var s_flag = false;
 	var repl = false;
