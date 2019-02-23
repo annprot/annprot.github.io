@@ -22,8 +22,8 @@ jsonFile.onreadystatechange = function() {
   			set_data(jsonFile.responseText);
 	  		view_blocks_tasks();
   		} catch(e) {
-  				waiting = setTimeout(function(){
-  					console.log("waiting..."); 
+  				waiting = setInterval(function(){
+  					console.log("waiting for loading the file..."); 
 	  				set_data(jsonFile.responseText);
 			  		view_blocks_tasks();
   			}, 500);
@@ -39,6 +39,11 @@ function request_data_to_4() {
 //для 7 задания функция, реализующая вызов основного блока
 function request_data_to_7() {
 	get_data("7");
+}
+
+//для 14 задания функция, реализующая вызов основного блока
+function request_data_to_14() {
+	get_data("14");
 }
 
 //Выбор режима игры(для некоторых заданий)
@@ -57,6 +62,15 @@ function select_task(user_task) {
 		case "7":
 			html_code += '<button onclick="game_mode=1;request_data_to_7();">Исправь ошибку</button>';
 			html_code += '<button onclick="game_mode=0;request_data_to_7();;">Образование мн. формы слова</button>';
+			$("#mode_game").append(html_code);
+
+			$("#exercs").fadeOut(1000);
+			$("#mode_game").fadeIn(1000);
+		break;
+
+		case "14":
+			html_code += '<button onclick="game_mode=0;request_data_to_14();">Режим запоминания</button>';
+			html_code += '<button onclick="game_mode=1;request_data_to_14();;">Упрощённый режим</button>';
 			$("#mode_game").append(html_code);
 
 			$("#exercs").fadeOut(1000);
@@ -99,7 +113,8 @@ function get_data(user_task) {
 
 		case "14":
 			//для 14 задания этот обработчик
-			script.src = "js/game_handlers/phrasal_handle.js";
+			if(game_mode == 0) script.src = "js/game_handlers/phrasal_handle_0.js";
+			else script.src = "js/game_handlers/phrasal_handle_1.js";
 		break;
 
 		default: 
