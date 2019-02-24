@@ -43,6 +43,7 @@ addEventListener('keyup', function () {
 //We divide the task to the blocks
 //Every block contains <= 25 words
 function view_blocks_tasks() {
+	clearTimeout(waiting); //fix waiting for the file
 	if(data.words.length <= 25) start_game();
 	else {
 		var length = data.words.length;
