@@ -448,7 +448,7 @@ header h1, #end h1 {
 	background: 0.5s #333;
 }
 
-#game .block #a_inform {
+#game #a_inform {
 	margin: 40px auto;
 	display: block;
 	color: #fff;
@@ -459,7 +459,7 @@ header h1, #end h1 {
 	max-width: 150px;
 }
 
-#game .block #a_inform:hover {
+#game #a_inform:hover {
 	background: #fff;
 	color: #FDC830;
 	transition: background 0.3s;
@@ -473,6 +473,36 @@ header h1, #end h1 {
 	margin-top: 30px;
 	padding: 10px;
 	display: inline-block;
+}
+
+/* 5 задание */
+#game #par_task {
+	border: 1px solid #fff;
+	margin: 20px auto;
+	max-width: 500px;
+	min-width: 300px;
+	font-size: 18px;
+	border-spacing: 1px;
+}
+
+#game #par_task tr{
+	border: 1px solid #fff;
+}
+
+#game #par_task th{
+	border: 1px solid #fff;
+	padding: 10px;
+}
+
+#game #task.par {
+	max-width: 400px;
+	margin: auto;
+	margin-top: 70px;
+}
+
+/* reset the width of the input by using additional class */
+#game #us_answer.par {
+	max-width: 350px;
 }
 
 /* 7 задание */
@@ -494,6 +524,9 @@ header h1, #end h1 {
 	padding: 10px;
 	display: inline-block;
 }
+
+
+
 
 .parent {
 	width: 100%;

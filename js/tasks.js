@@ -36,6 +36,11 @@ function request_data_to_4() {
 	get_data("4");
 }
 
+//для 5 задания функция, реализующая вызов основного блока
+function request_data_to_5() {
+	get_data("5");
+}
+
 //для 7 задания функция, реализующая вызов основного блока
 function request_data_to_7() {
 	get_data("7");
@@ -58,6 +63,15 @@ function select_task(user_task) {
 			$("#exercs").fadeOut(1000);
 			$("#mode_game").fadeIn(1000);
 		break;
+
+		case "5":
+			html_code += '<button onclick="game_mode=0;request_data_to_5();">Подобрать пароним</button>';
+			html_code += '<button onclick="game_mode=1;request_data_to_5();;">Сопоставить паронимы</button>';
+			$("#mode_game").append(html_code);
+
+			$("#exercs").fadeOut(1000);
+			$("#mode_game").fadeIn(1000);
+		break;	
 
 		case "7":
 			html_code += '<button onclick="game_mode=1;request_data_to_7();">Исправь ошибку</button>';
@@ -99,7 +113,14 @@ function get_data(user_task) {
 
 		case "5":
 			//для 5 задания этот обработчик
-			script.src = "js/game_handlers/paronyms_game_handle.js";
+			if(game_mode == 0) {
+				user_task = "5_0";
+				script.src = "js/game_handlers/paronyms_game_handle_0.js";
+			}
+			else {
+				user_task = "5_1";
+				script.src = "js/game_handlers/paronyms_game_handle_1.js";
+			}
 		break;
 
 		case "7":
