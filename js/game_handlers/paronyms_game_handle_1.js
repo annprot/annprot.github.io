@@ -75,7 +75,7 @@ function start_game() {
 	//Add own HTML structure for this task
 	//ATTENTION! CLASS "par" IS ONLY FOR THIS TASK
 	document.getElementById("game").innerHTML = '<p class="par" id="task">Соотнестите определения со словами:</p>';
-	document.getElementById("game").innerHTML += '<div class="par" id="main_table"><table id="par_task"><tr><th>Слова</th><th>Определения</th></tr></tr></table></div>';
+	document.getElementById("game").innerHTML += '<div class="par" id="main_table"><table id="par_task"><tr class="task_tr><th>Слова</th><th>Определения</th></tr></tr></table></div>';
 	document.getElementById("game").innerHTML += '<form onsubmit="return false;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><input class="par" type="text" id="us_answer"></form>';
 	document.getElementById("game").innerHTML += '<button class="par" id="game_handle_btn" onclick="game_handle();">Проверить</button>';
 	document.getElementById("game").innerHTML += '<p class="par" id="counter"></p>';
@@ -223,7 +223,7 @@ function set_word() {
 
 		//split data from array
 		//create the table
-		var html_table = '<table id="par_task"><tr><th>Слова</th><th>Определения</th></tr>';
+		var html_table = '<table id="par_task"><tr class="task_tr"><th>Слова</th><th>Определения</th></tr>';
 		for(var i = 0; i < rwords[0].length; i++) {
 			html_table += '<tr><th>' + rwords[0][i] + '</th><th>' + (i+1) + '. ' + ranswers[i]  + '</th></tr>';
 		}

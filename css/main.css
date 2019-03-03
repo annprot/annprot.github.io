@@ -492,6 +492,11 @@ header h1, #end h1 {
 #game #par_task th{
 	border: 1px solid #fff;
 	padding: 10px;
+	font-weight: normal;
+}
+
+#game #par_task th.task_tr {
+	font-weight: bold;
 }
 
 #game #task.par {
