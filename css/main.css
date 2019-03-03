@@ -495,7 +495,7 @@ header h1, #end h1 {
 	font-weight: normal;
 }
 
-#game #par_task th.task_tr {
+#game #par_task tr.task_tr th{
 	font-weight: bold;
 }
 
