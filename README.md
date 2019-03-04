@@ -1,2 +1,3 @@
 # annprot.github.io
-A place where people can prepare for the Russian EGE exam
+A place where people can prepare for Russian State Exam
+### At this moment we're working on this project...
