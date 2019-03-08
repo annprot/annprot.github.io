@@ -9,7 +9,8 @@ var gameWork = false; //If the user is in the game, he can press 'enter' and 'sh
 var position = 0; //now position
 var right_answer = "";
 var right_answer_s = "";
-var all_elem = 0;
+var all_elem = 0; //count all elemnts
+var h_timer = true; //fix fast click
 
 var rwords = []; //all words
 var rerrors = []; //user's mistakes
@@ -23,23 +24,16 @@ document.addEventListener('click',function(e){
 		set_data_cut($(e.target).attr('class'));
 	}
 
-	if(e.target && e.target.id == 'ac_btn_game') {
+	if(e.target && e.target.id == 'ac_btn_game' && h_timer == true) {
 		//debug only
 		//alert($(e.target).attr('class'));
 		//alert(right_answer_s);
 		game_handle(right_answer_s, $(e.target).attr('class'));
-	}
-});
+		h_timer = false;
 
-//Обработка клавиши "enter" для отправки ответа
-//Input keys from the user's keyboard
-addEventListener("keydown", function(event) {
-	switch(event.keyCode) {
-
-		//enter listener
-		case 13:
-			if(gameWork) game_handle();
-		break;
+		setTimeout(function () {
+			h_timer = true;
+		}, 1500);
 	}
 });
 
