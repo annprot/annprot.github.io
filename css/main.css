@@ -466,13 +466,14 @@ header h1, #end h1 {
 }
 
 /* 4 задание */
-#game #btn_answers button {
+#game #word button {
 	width: 60px;
 	height: 60px;
-	margin: 10px;
+	margin: 5px;
+	font-size: 30px;
 	margin-top: 30px;
 	padding: 10px;
-	display: inline-block;
+	display: inline;
 }
 
 /* 5 задание */

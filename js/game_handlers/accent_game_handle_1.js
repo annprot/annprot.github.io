@@ -33,7 +33,7 @@ document.addEventListener('click',function(e){
 
 		setTimeout(function () {
 			h_timer = true;
-		}, 1500);
+		}, 1000);
 	}
 });
 
@@ -74,8 +74,8 @@ function start_game() {
 	document.getElementById("main").style.display = "none";
 
 	document.getElementById("us_answer").style.display = "none";
+	document.getElementById("counter").style.paddingTop = "50px";
 	document.getElementById("game_handle_btn").style.display = "none";
-	document.getElementById("btn_answers").style.paddingBottom  = "50px";
 
 	document.getElementById("task").innerHTML = "Выберите букву, на которую падает ударение в слове:"
 	$("#game").fadeIn(1000);
@@ -119,15 +119,14 @@ function game_handle(right_answ, user_answ) {
 	if(right_answ == user_answ) {
 		flag = true;
 		rwords.shift();
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.background = "#57CE79";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.border = "1px solid #57CE79";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.color = "#fff";
+		document.getElementById('word').getElementsByClassName(user_answ)[0].style.background = "#57CE79";
+		document.getElementById('word').getElementsByClassName(user_answ)[0].style.border = "1px solid #57CE79";
+		document.getElementById('word').getElementsByClassName(user_answ)[0].style.color = "#fff";
 
 
 		position++;
 
 		setTimeout(function () {
-			document.getElementById("btn_answers").innerHTML = "";
 			set_word();
 		}, 1000);
 	}
@@ -135,9 +134,9 @@ function game_handle(right_answ, user_answ) {
 	if(!flag) {
 		//alert("false");
 		//handle mistake
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.background = "#D63C3C";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.border = "1px solid #D63C3C";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.color = "#fff";
+		document.getElementById('word').getElementsByClassName(user_answ)[0].style.background = "#D63C3C";
+		document.getElementById('word').getElementsByClassName(user_answ)[0].style.border = "1px solid #D63C3C";
+		document.getElementById('word').getElementsByClassName(user_answ)[0].style.color = "#fff";
 
 		var flag = false;
 		for(var i = 0; i < rerrors.length; i++) {
@@ -202,17 +201,18 @@ function set_word() {
 			word_now[j].toLowerCase() == "у" || word_now[j].toLowerCase() == "э" ||
 			word_now[j].toLowerCase() == "о" || word_now[j].toLowerCase() == "ы") && !flag) {
 			html_code += '<button id="ac_btn_game" class="' + (j + 1) + '">' + word_now[j].toLowerCase() + '</button>';
+		} else {
+			html_code += word_now[j].toLowerCase();
 		}
 	}
 
-	$("#btn_answers").append(html_code);
+	document.getElementById("word").innerHTML = html_code;
 	//console.log(symb);
 	//console.log(word_now);
 	//console.log(right_answer);
 	//console.log(right_answer_s);
 
 	document.getElementById("a_inform").href = "http://gramota.ru/slovari/dic/?word=" + rwords[0].toLowerCase(); + "&all=x";
-	document.getElementById("word").innerHTML = word_now.join('').toLowerCase();
 	document.getElementById("us_answer").style.background = "none";
 	document.getElementById("us_answer").style.border = "1px solid #fff";
 	document.getElementById("us_answer").style.color = "#fff";
