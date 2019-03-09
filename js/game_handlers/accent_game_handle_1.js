@@ -76,6 +76,7 @@ function start_game() {
 	document.getElementById("us_answer").style.display = "none";
 	document.getElementById("counter").style.paddingTop = "50px";
 	document.getElementById("game_handle_btn").style.display = "none";
+	document.getElementById("word").style.fontSize = "30px";
 
 	document.getElementById("task").innerHTML = "Выберите букву, на которую падает ударение в слове:"
 	$("#game").fadeIn(1000);
