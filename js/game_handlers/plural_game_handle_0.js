@@ -75,7 +75,7 @@ function start_game() {
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
 
-	document.getElementById("task").innerHTML = "Напишите множественную форму существительного:"
+	document.getElementById("task").innerHTML = "Напиши множественную форму существительного:"
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
