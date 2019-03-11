@@ -77,7 +77,7 @@ function start_game() {
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
 
-	document.getElementById("task").innerHTML = "Раскройте скобки:"
+	document.getElementById("task").innerHTML = "Раскрой скобки:"
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
