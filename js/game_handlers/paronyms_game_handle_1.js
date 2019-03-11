@@ -74,7 +74,7 @@ function view_blocks_tasks() {
 function start_game() {
 	//Add own HTML structure for this task
 	//ATTENTION! CLASS "par" IS ONLY FOR THIS TASK
-	document.getElementById("game").innerHTML = '<p class="par" id="task">Соотнестите определения со словами:</p>';
+	document.getElementById("game").innerHTML = '<p class="par" id="task">Соотнести определения со словами:</p>';
 	document.getElementById("game").innerHTML += '<div class="par" id="main_table"><table id="par_task"><tr class="task_tr><th>Слова</th><th>Определения</th></tr></tr></table></div>';
 	document.getElementById("game").innerHTML += '<form onsubmit="return false;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><input class="par" type="text" id="us_answer"></form>';
 	document.getElementById("game").innerHTML += '<button class="par" id="game_handle_btn" onclick="game_handle();">Проверить</button>';
