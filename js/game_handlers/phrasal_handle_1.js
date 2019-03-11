@@ -3,7 +3,7 @@
 	* Here are a lot of different functions and methods for the game handler
 	*/
 
-console.log("File is connected to the page!");
+//console.log("File is connected to the page!");
 
 var gameWork = false; //If the user is in the game, he can press 'enter' and 'shift' in the game
 var position = 0; //now position
@@ -88,7 +88,7 @@ function start_game() {
 	document.getElementById("game_handle_btn").style.display = "none";
 	document.getElementById("btn_answers").style.paddingBottom  = "50px";
 
-	document.getElementById("task").innerHTML = "Выберите правильный ответ:";
+	document.getElementById("task").innerHTML = "Выбери правильный ответ:";
 
 	var html_code = '<button id="ac_btn_phrasal" class="1">' + "Сл..." + '</button>';
 	html_code += '<button id="ac_btn_phrasal" class="2">' + "Раз..." + '</button>';
