@@ -76,7 +76,7 @@ function start_game() {
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
 
-	document.getElementById("task").innerHTML = "Напишите слово, сделав заглавной гласную, на которую падает ударение:"
+	document.getElementById("task").innerHTML = "Напиши слово, сделав заглавной гласную, на которую падает ударение:"
 	$("#game").fadeIn(1000);
 }
 
