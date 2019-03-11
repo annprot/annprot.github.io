@@ -86,7 +86,7 @@ function start_game() {
 	document.getElementById("game_handle_btn").style.display = "none";
 	document.getElementById("btn_answers").style.paddingBottom  = "50px";
 
-	document.getElementById("task").innerHTML = "Выберите правильный ответ:"
+	document.getElementById("task").innerHTML = "Выбери правильный ответ:"
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
