@@ -31,14 +31,14 @@
 	
 	<!-- Button start -->
 	<section id="main">
-		<h2>Давай вместе подготовимся к ЕГЭ? :)</h2>
+		<h2>Давай вместе подготовимся к ЕГЭ по русскому языку? :)</h2>
 		<button onclick="view_tasks()">Вперед к знаниям!</button>
 	</section>
 	<!-- End Button start -->
 	
 	<!-- Dictionaries section -->
 	<section id="exercs">
-		<p>Выберите задание:</p>
+		<p>Выбери задание:</p>
 		<div class="list">
 			<button onclick='select_task("4");'>4</button>
 			<button onclick='select_task("5");'>5</button>
@@ -92,6 +92,7 @@
 	<!-- List of blocks of the task -->
 	<section id="block_tasks">
 		<p>Выбери блок со списком слов:</p>
+		<!-- <button onclick="come_back();">Назад</button> -->
 	</section>
 	<!-- End List of blocks of the task -->
 
@@ -143,8 +144,14 @@
 		//Отображаем список всех заданий 
 		//View all tasks for user
 		function view_tasks() {
+			document.getElementById("header").innerHTML = "<h1>ЕГЭ - это что-то!</h1>";
 			$("#main").fadeOut(500);
 			$("#exercs").fadeIn(2000);
+		}
+
+		//Возвращаем предыдущий блок
+		function come_back() {	
+			document.getElementsByTagName('body')[0].removeChild(script);
 		}
 
 		//Стартовая анимация появления первого(главного) блока

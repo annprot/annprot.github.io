@@ -14,6 +14,8 @@ var jsonFile = new XMLHttpRequest();
 var url = "https://annprot.github.io/tasks/";
 var request_state = false;
 var waiting; //waiting for loading the game handler
+var script = document.createElement('script');
+
 
 //Initialize all words from JSON file
 jsonFile.onreadystatechange = function() {
@@ -103,7 +105,6 @@ function select_task(user_task) {
 function get_data(user_task) {
 	us_task = user_task;
 	
-	var script = document.createElement('script');
 	switch(user_task) {
 		case "4":
 			//для 4 задания этот обработчик
@@ -140,7 +141,7 @@ function get_data(user_task) {
 
 		default: 
 			//для всех остальных заданий этот обработчик
-     	script.src = "js/game_handlers/game_handle.js";
+     		script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
 
