@@ -563,7 +563,21 @@ header h1, #end h1 {
 /* Конец Блока с игрой */
 
 
+/* Особые стили для кнопки "Назад" */
+button#btn_back {
+	background: none;
+	color: #fff;
+	width: 250px;
+	height: 55px;
+	border: 1px dashed #fff;
+}
 
+button#btn_back:hover {
+	background: #fff;
+	color: #FDC830;
+	transition: background 0.8s;
+}
+/* Конец Особых стили для кнопки "Назад" */
 
 
 
