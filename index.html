@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
+	<!-- FAQ Section -->
 	<section id="faq">
 		<button onclick="show('block')"><img src="img/faq.png" alt="faq icon"></button>
 		<div id="wrap" onclick="show('none')">
@@ -37,10 +37,11 @@
 				<p class="example">ПРИМЕР</p>
 				<img class="gif" src="img/ani6.gif" alt="GIF image example">
 				<h2>Вот и все! Успехов в выполнении заданий!</h2>
-				<button class="close">Close</button>
+				<button class="close">Закрыть</button>
 			</div>
 		</div>
 	</section>
+	<!-- End FAQ Section -->
 
 
 	<!-- Main block -->
@@ -106,6 +107,9 @@
 	<!-- List of blocks of the task -->
 	<section id="mode_game">
 		<p>Выбери режим игры:</p>
+		<div id="mode_game_btns">
+			
+		</div>
 	</section>
 	<!-- End List of blocks of the task -->
 
@@ -169,9 +173,12 @@
 			$("#exercs").fadeIn(2000);
 		}
 
-		//Возвращаем предыдущий блок
-		function come_back() {	
-			document.getElementsByTagName('body')[0].removeChild(script);
+		//Возвращаем предыдущий блок "Выберите задание"
+		function come_back_sg() {	
+			document.getElementById("mode_game_btns").innerHTML = "";
+
+			$("#mode_game").fadeOut(500);
+			$("#exercs").fadeIn(1000);
 		}
 
 		//Стартовая анимация появления первого(главного) блока
