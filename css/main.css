@@ -153,6 +153,7 @@ body {
 
 #faq .gif {
 	width: 500px;
+	border-radius: 20px;
 }
 
 #faq #window p.answer {
