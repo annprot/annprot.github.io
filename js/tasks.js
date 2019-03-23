@@ -16,7 +16,6 @@ var request_state = false;
 var waiting; //waiting for loading the game handler
 var script = document.createElement('script');
 
-
 //Initialize all words from JSON file
 jsonFile.onreadystatechange = function() {
 	if (jsonFile.readyState == 4 && jsonFile.status == 200) {
@@ -56,11 +55,13 @@ function request_data_to_14() {
 //Выбор режима игры(для некоторых заданий)
 function select_task(user_task) {
 	var html_code = "";
+
 	switch(user_task) {
 		case "4":
 			html_code += '<button onclick="game_mode=0;request_data_to_4();">Режим запоминания</button>';
 			html_code += '<button onclick="game_mode=1;request_data_to_4();;">Упрощённый режим</button>';
-			$("#mode_game").append(html_code);
+			html_code += '<button id="btn_back" onclick="come_back_sg();">Назад</button>';
+			$("#mode_game_btns").append(html_code);
 
 			$("#exercs").fadeOut(1000);
 			$("#mode_game").fadeIn(1000);
@@ -69,7 +70,8 @@ function select_task(user_task) {
 		case "5":
 			html_code += '<button onclick="game_mode=0;request_data_to_5();">Подобрать пароним</button>';
 			html_code += '<button onclick="game_mode=1;request_data_to_5();;">Сопоставить паронимы</button>';
-			$("#mode_game").append(html_code);
+			html_code += '<button id="btn_back" onclick="come_back_sg();">Назад</button>';
+			$("#mode_game_btns").append(html_code);
 
 			$("#exercs").fadeOut(1000);
 			$("#mode_game").fadeIn(1000);
@@ -78,7 +80,8 @@ function select_task(user_task) {
 		case "7":
 			html_code += '<button onclick="game_mode=1;request_data_to_7();">Исправь ошибку</button>';
 			html_code += '<button onclick="game_mode=0;request_data_to_7();;">Образование мн. формы слова</button>';
-			$("#mode_game").append(html_code);
+			html_code += '<button id="btn_back" onclick="come_back_sg();">Назад</button>';
+			$("#mode_game_btns").append(html_code);
 
 			$("#exercs").fadeOut(1000);
 			$("#mode_game").fadeIn(1000);
@@ -87,7 +90,8 @@ function select_task(user_task) {
 		case "14":
 			html_code += '<button onclick="game_mode=0;request_data_to_14();">Режим запоминания</button>';
 			html_code += '<button onclick="game_mode=1;request_data_to_14();;">Упрощённый режим</button>';
-			$("#mode_game").append(html_code);
+			html_code += '<button id="btn_back" onclick="come_back_sg();">Назад</button>';
+			$("#mode_game_btns").append(html_code);
 
 			$("#exercs").fadeOut(1000);
 			$("#mode_game").fadeIn(1000);
@@ -104,6 +108,7 @@ function select_task(user_task) {
 //Get the list of words for the task
 function get_data(user_task) {
 	us_task = user_task;
+	script.src = "";
 	
 	switch(user_task) {
 		case "4":
@@ -141,7 +146,7 @@ function get_data(user_task) {
 
 		default: 
 			//для всех остальных заданий этот обработчик
-     		script.src = "js/game_handlers/game_handle.js";
+     	script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
 
