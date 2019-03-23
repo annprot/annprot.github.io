@@ -109,6 +109,7 @@ body {
     height:700px;
 	text-align: center;
 	overflow-x:hidden;
+	border-radius: 20px;
 }
 
 #faq #window h1 {
