@@ -144,9 +144,13 @@ function get_data(user_task) {
 			else script.src = "js/game_handlers/phrasal_handle_1.js";
 		break;
 
+		case "16":
+			script.src = "js/game_handlers/16_commas_game_handle.js";
+		break;
+
 		default: 
 			//для всех остальных заданий этот обработчик
-     	script.src = "js/game_handlers/game_handle.js";
+     		script.src = "js/game_handlers/game_handle.js";
 		break;
 	}
 
