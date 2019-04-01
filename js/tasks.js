@@ -78,7 +78,7 @@ function select_task(user_task) {
 		break;	
 
 		case "7":
-			html_code += '<button onclick="game_mode=1;request_data_to_7();">Исправь ошибку</button>';
+			//html_code += '<button onclick="game_mode=1;request_data_to_7();">Исправь ошибку</button>';
 			html_code += '<button onclick="game_mode=0;request_data_to_7();;">Образование мн. формы слова</button>';
 			html_code += '<button id="btn_back" onclick="come_back_sg();">Назад</button>';
 			$("#mode_game_btns").append(html_code);
