@@ -82,6 +82,8 @@ function start_game() {
 	document.getElementById("main").style.display = "none";
 	document.getElementById("task").style.fontWeight = "100";
 	document.getElementById("a_inform").style.display = "none";
+	document.getElementById("word").style.maxWidth = "100%";
+	document.getElementById("word").style.fontSize = "36px";
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
@@ -113,8 +115,8 @@ function set_data(datajson) {
 
 	for(var i = 0; i < data.words.length; i++) {
 		var div_words = data.words[i].split("->");
-		window.answers.set(div_words[0], div_words[1]);
-		rwords.push(div_words[0]);
+		window.answers.set(div_words[0].trim(), div_words[1].trim());
+		rwords.push(div_words[0].trim());
 	}
 
 	all_elem = rwords.length;
