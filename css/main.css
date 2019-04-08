@@ -718,16 +718,6 @@ button#btn_back:hover {
 		font-size: 60px;
 		font-weight: 100;
 	}
-
-	.block {
-		width: 300px;
-		height: 300px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin: -150px 0 0 -150px;
-	}
-
 	#game #word {
 		font-size: 50px;
 		font-weight: 100;
