@@ -722,7 +722,9 @@ button#btn_back:hover {
 		font-size: 50px;
 		font-weight: 100;
 	}
-
+	#game input {
+		width: 80%;
+	}	
 	#game #pfs {
 		font-size: 18px;
 		font-weight: 100;
