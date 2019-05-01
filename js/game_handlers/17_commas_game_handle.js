@@ -15,7 +15,6 @@ var right_answer_s = ""; //Contains the symbol of right answer for user's task
 var all_elem = 0; //Number of words in the task
 var h_enter = false; //fix longing enter
 var answers = new Map();
-var h_timer = true; //fix fast click
 
 var rwords = []; //All words
 var rerrors = []; //User's mistakes
@@ -27,17 +26,6 @@ document.addEventListener('click',function(e){
 	if(e.target && e.target.id == 'btn_block') {
 		var e_task = $(e.target).attr('class');
 		set_data_cut($(e.target).attr('class'));
-	}
-
-	if(e.target && e.target.id == 'cc_btn_game' && h_timer == true) {
-		//debug only
-		//alert($(e.target).attr('class'));
-		game_handle($(e.target).attr('class'));
-		h_timer = false;
-
-		setTimeout(function () {
-			h_timer = true;
-		}, 1000);
 	}
 });
 
@@ -61,21 +49,21 @@ addEventListener('keyup', function () {
 //Создаем кнопки с блоками
 //Каждый блок содержит до 25 слов
 //We divide the task to the blocks
-//Every block contains <= 10 words
+//Every block contains <= 25 words
 function view_blocks_tasks() {
 	clearTimeout(waiting);//fix waiting for the file
-	if(data.words.length <= 10) start_game();
+	if(data.words.length <= 25) start_game();
 	else {
 		var length = data.words.length;
 		var pos = 1;
-		var end_l = length - 10;
+		var end_l = length - 25;
 		var html_code = "";
 
 		do {
 			html_code += '<button id="btn_block" class="' + length + "_" + end_l + '">' + "Блок " + pos +'</button>';
 			pos++;
-			length -= 10;
-			end_l = length - 10;
+			length -= 25;
+			end_l = length - 25;
 			if(end_l < 0) end_l = 0;
 		} while(length > 0);
 
@@ -96,16 +84,6 @@ function start_game() {
 	document.getElementById("a_inform").style.display = "none";
 	document.getElementById("word").style.maxWidth = "100%";
 	document.getElementById("word").style.fontSize = "36px";
-	document.getElementById("task").innerHTML = "Сколько запятых нужно поставить в предложении?";
-	
-	document.getElementById("btn_answers").style.paddingTop  = "30px";
-	document.getElementById("counter").style.paddingBottom  = "50px";
-
-	document.getElementById("us_answer").style.display = "none";
-	document.getElementById("counter").style.paddingTop = "50px";
-	document.getElementById("game_handle_btn").style.display = "none";
-	document.getElementById("word").style.fontSize = "30px";
-
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
@@ -136,8 +114,8 @@ function set_data(datajson) {
 	data = JSON.parse(datajson);
 
 	for(var i = 0; i < data.words.length; i++) {
-		var div_words = data.words[i].split("—>");
-		window.answers.set(div_words[0].trim(), Number(div_words[1].trim()));
+		var div_words = data.words[i].split("->");
+		window.answers.set(div_words[0].trim(), div_words[1].trim());
 		rwords.push(div_words[0].trim());
 	}
 
@@ -146,15 +124,15 @@ function set_data(datajson) {
 
 //Кнопка "Проверить"
 //Button "check"
-function game_handle(user_answ) {
+function game_handle() {
 	var flag = false;
 
-	if(user_answ == answers.get(rwords[0])) {
+	if(document.getElementById("us_answer").value.toLowerCase().trim() == answers.get(rwords[0])) {
 		flag = true; //ответ верный or right answer
 		rwords.shift();
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.background = "#57CE79";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.border = "1px solid #57CE79";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.color = "#fff";
+		document.getElementById("us_answer").style.background = "#57CE79";
+		document.getElementById("us_answer").style.border = "1px solid #57CE79";
+		document.getElementById("us_answer").style.color = "#fff";
 
 		position++;
 
@@ -166,27 +144,24 @@ function game_handle(user_answ) {
 	if(!flag) {
 		//ответ неверный
 		//handle mistake
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.background = "#D63C3C";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.border = "1px solid #D63C3C";
-		document.getElementById('btn_answers').getElementsByClassName(user_answ)[0].style.color = "#fff";
+		document.getElementById("us_answer").value = "";
+		document.getElementById("us_answer").placeholder = answers.get(rwords[0]);
+		document.getElementById("us_answer").style.background = "#D63C3C";
+		document.getElementById("us_answer").style.border = "1px solid #D63C3C";
+		document.getElementById("us_answer").style.color = "#fff";
 
 		var flag = false;
 		for(var i = 0; i < rerrors.length; i++) {
-			if(rerrors[i] == rwords[0] + " -> " + answers.get(rwords[0]) + " запятая(ых)") flag = true; 
+			if(rerrors[i] == rwords[0] + " -> " + answers.get(rwords[0])) flag = true; 
 		}
 
-		if(!flag) rerrors.push(rwords[0] + " -> " + answers.get(rwords[0]) + " запятая(ых)");
+		if(!flag) rerrors.push(rwords[0] + " -> " + answers.get(rwords[0]));
 
 
 		setTimeout(function () {
 			set_word();
 		}, 1500);
 	} 
-}
-
-//Random value for the generating the task
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
 }
 
 //Следующее слово, функция автоматически вызывается кнопкой "Проверить"
@@ -207,7 +182,7 @@ function set_word() {
 
 		document.getElementById("us_pop_er").style.display = "block";
 		if(rerrors.length > 0) {
-			document.getElementById("us_errors").innerHTML += rerrors.join('<br>');
+			document.getElementById("us_errors").innerHTML += rerrors.join(', ');
 		}
 		else document.getElementById("btn_errors").style.display = "none";
 
@@ -220,21 +195,17 @@ function set_word() {
 	document.getElementById("us_answer").focus();
 	document.getElementById("us_answer").click();
 
-	//replace the symbol
-	var html_code = "";
-
-	for(var j = 0; j < answers.get(rwords[0]) + getRandomArbitrary(1, 3); j++) {
-		html_code += '<button id="cc_btn_game" class="' + j + '">' + j + '</button>';
-	}
-
-	document.getElementById("btn_answers").innerHTML = html_code;
 	//debug only
 	//console.log(symb);
 	//console.log(word_now);
 	//console.log(right_answer);
 	//console.log(right_answer_s);
-
 	document.getElementById("word").innerHTML = rwords[0];
+	document.getElementById("us_answer").placeholder = '';
+	document.getElementById("us_answer").style.background = "none";
+	document.getElementById("us_answer").style.border = "1px solid #fff";
+	document.getElementById("us_answer").style.color = "#fff";
+	document.getElementById("us_answer").value = "";
 	document.getElementById("counter").innerHTML = (position + 1) + "/" + all_elem;
 }
 

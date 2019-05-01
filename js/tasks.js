@@ -145,7 +145,11 @@ function get_data(user_task) {
 		break;
 
 		case "16":
-			script.src = "js/game_handlers/16_commas_game_handle.js";
+			script.src = "js/game_handlers/16_count_commas_game_handle.js";
+		break;
+
+		case "16":
+			script.src = "js/game_handlers/17_commas_game_handle.js";
 		break;
 
 		default: 

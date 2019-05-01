@@ -544,6 +544,13 @@ header h1, #end h1 {
 	display: inline-block;
 }
 
+/* 16 задание */
+#game #cc_btn_game {
+	margin: 10px;
+	width: 60px;
+	height: 60px;
+	display: inline-block;
+}
 
 
 
@@ -703,13 +710,20 @@ button#btn_back:hover {
 	header h1, #end h1 {
 		padding-top: 100px;
 	}
-
+	
+	#faq #window {
+		width: 100%;
+	}
 
 }
 
 @media screen and (max-width: 600px) {
 	#faq .gif {
 		width: 400px;
+	}
+
+	#faq #window {
+		width: 90%;
 	}
 }
 
