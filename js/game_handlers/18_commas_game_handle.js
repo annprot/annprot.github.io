@@ -1,5 +1,5 @@
 /*
-	* Обработчик стандартных заданий
+	* Обработчик задания 18
 	* This file is connected to the main page.
 	* Here are a lot of different functions and methods for the game handler
 */
@@ -49,21 +49,21 @@ addEventListener('keyup', function () {
 //Создаем кнопки с блоками
 //Каждый блок содержит до 25 слов
 //We divide the task to the blocks
-//Every block contains <= 25 words
+//Every block contains <= 10 words
 function view_blocks_tasks() {
 	clearTimeout(waiting);//fix waiting for the file
-	if(data.words.length <= 25) start_game();
+	if(data.words.length <= 10) start_game();
 	else {
 		var length = data.words.length;
 		var pos = 1;
-		var end_l = length - 25;
+		var end_l = length - 10;
 		var html_code = "";
 
 		do {
 			html_code += '<button id="btn_block" class="' + length + "_" + end_l + '">' + "Блок " + pos +'</button>';
 			pos++;
-			length -= 25;
-			end_l = length - 25;
+			length -= 10;
+			end_l = length - 10;
 			if(end_l < 0) end_l = 0;
 		} while(length > 0);
 
@@ -83,7 +83,10 @@ function start_game() {
 	document.getElementById("task").style.fontWeight = "100";
 	document.getElementById("a_inform").style.display = "none";
 	document.getElementById("word").style.maxWidth = "100%";
-	document.getElementById("word").style.fontSize = "36px";
+	document.getElementById("word").style.fontSize = "24px";
+	document.getElementById("counter").style.paddingBottom  = "50px";
+	document.getElementById("task").innerHTML = "На месте каких цифр должны стоять запятые(в порядке возрастания)?";
+	
 	$("#exercs").fadeOut(1000);
 	$("#faq").fadeOut(1000);
 	$("#game").fadeIn(1000);
@@ -114,7 +117,7 @@ function set_data(datajson) {
 	data = JSON.parse(datajson);
 
 	for(var i = 0; i < data.words.length; i++) {
-		var div_words = data.words[i].split("->");
+		var div_words = data.words[i].split("—>");
 		window.answers.set(div_words[0].trim(), div_words[1].trim());
 		rwords.push(div_words[0].trim());
 	}
@@ -175,6 +178,7 @@ function set_word() {
 		document.getElementById("game").style.display = "none";
 		document.getElementById("number").innerHTML = us_task;
 		document.getElementById("end_text").innerHTML += us_task + " задания!";
+		document.getElementById("type_error").innerHTML = "Предложение(я), в котором(ых) ты допустил ошибку";
 
 		document.body.style.background = "#8E2DE2"; 
 		document.body.style.background = "webkit-linear-gradient(to right, #4A00E0, #8E2DE2)";
