@@ -1,5 +1,5 @@
 /*
-	* Обработчик стандартных заданий с запятыми(17-20)
+	* Обработчик стандартных заданий с запятыми(17, 19, 20)
 	* This file is connected to the main page.
 	* Here are a lot of different functions and methods for the game handler
 */
