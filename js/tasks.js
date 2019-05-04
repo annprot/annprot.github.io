@@ -148,8 +148,24 @@ function get_data(user_task) {
 			script.src = "js/game_handlers/16_count_commas_game_handle.js";
 		break;
 
-		case "16":
-			script.src = "js/game_handlers/17_commas_game_handle.js";
+		case "17":
+			script.src = "js/game_handlers/commas_game_handle.js";
+		break;
+
+		case "18":
+			script.src = "js/game_handlers/commas_game_handle.js";
+		break;
+
+		case "19":
+			script.src = "js/game_handlers/commas_game_handle.js";
+		break;
+
+		case "20":
+			script.src = "js/game_handlers/commas_game_handle.js";
+		break;
+
+		case "21":
+			script.src = "js/game_handlers/21_commas_game_handle.js";
 		break;
 
 		default: 
