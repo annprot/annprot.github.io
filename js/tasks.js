@@ -153,7 +153,7 @@ function get_data(user_task) {
 		break;
 
 		case "18":
-			script.src = "js/game_handlers/18_commas_game_handle.js";
+			script.src = "js/game_handlers/commas_game_handle.js";
 		break;
 
 		case "19":
