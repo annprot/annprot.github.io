@@ -111,6 +111,12 @@ function get_data(user_task) {
 	script.src = "";
 	
 	switch(user_task) {
+		case "1-3":
+			//задание 1-3
+			user_task = "1-3";
+			script.src = "js/game_handlers/1_3_tasks_game_handler.js";
+		break;
+
 		case "4":
 			//для 4 задания этот обработчик
 			if(game_mode == 0) script.src = "js/game_handlers/accent_game_handle_0.js";

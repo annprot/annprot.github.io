@@ -552,7 +552,60 @@ header h1, #end h1 {
 	display: inline-block;
 }
 
+/* 1-3 задания */
+#game #text_field {
+	margin: 10px auto;
+	max-width: 70%;
+	font-weight: 100;
+	padding: 20px;
+	border: 1px dashed #fff;
+	margin: 0 auto;
+	font-size: 22px;
+}
 
+#game button#start_tasks {
+	margin: 15px;
+	margin-top: 30px;
+	max-width: 210px;
+}
+
+#game #container_task .title_task {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#game #container_task #game_handle_btn {
+	margin-bottom: 15px;
+}
+
+#game #container_task {
+	margin: 10px auto;
+	max-width: 60%;
+}
+
+#game #container_task p.user_answ {
+	margin: 5px;
+	padding: 0px;
+	font-size: 20px;
+}
+
+#game #container_task form {
+	margin-top: 20px;
+}
+
+#game #container_task button#step_back_btn {
+	display: block;
+	margin: 0 auto;
+	background: none;
+	color: #fff;
+	border: 1px dashed #fff;
+}
+
+#game #container_task button#step_back_btn:hover {
+	background: #fff;
+	color: #FDC830;
+	transition: background 0.8s;
+}
 
 .parent {
 	background: #FDC830;  /* fallback for old browsers */
