@@ -563,7 +563,7 @@ header h1, #end h1 {
 	font-size: 22px;
 }
 
-#game button#start_tasks {
+#game button.start_tasks {
 	margin: 15px;
 	margin-top: 30px;
 	max-width: 210px;
@@ -606,6 +606,18 @@ header h1, #end h1 {
 	color: #FDC830;
 	transition: background 0.8s;
 }
+
+#game #counter_1_3 {
+	margin: 15px;
+	padding: 0;
+	color: #fff;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+
+
+
 
 .parent {
 	background: #FDC830;  /* fallback for old browsers */
