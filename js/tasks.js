@@ -135,6 +135,10 @@ function get_data(user_task) {
 			}
 		break;
 
+		case "6":
+			script.src = "js/game_handlers/6_task.js";
+		break;
+
 		case "7":
 			//для 7 задания этот обработчик
 			if(game_mode == 0) script.src = "js/game_handlers/plural_game_handle_0.js";
